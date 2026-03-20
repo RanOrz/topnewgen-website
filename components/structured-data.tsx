@@ -18,14 +18,15 @@ export function StructuredData() {
         : "新睿保險集團提供全面的人壽保險解決方案，具有生前福利。",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "New York",
-      addressRegion: "NY",
-      postalCode: "10001",
+      streetAddress: "851 Burlway Rd Room 608",
+      addressLocality: "Burlingame",
+      addressRegion: "CA",
+      postalCode: "94010",
       addressCountry: "US",
     },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+1-800-123-4567",
+      telephone: "+1-650-755-1668",
       contactType: "customer service",
     },
     sameAs: [

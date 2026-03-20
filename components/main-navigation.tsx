@@ -44,7 +44,6 @@ export function MainNavigation() {
         <NavigationMenuItem>
           <NavigationMenuTrigger
             className="bg-transparent hover:bg-accent hover:text-accent-foreground"
-            onClick={() => (window.location.href = "/solutions")}
           >
             <ShieldCheck className="mr-2 h-5 w-5 text-info" />
             {t.nav.solutions}

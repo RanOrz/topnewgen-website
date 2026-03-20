@@ -57,10 +57,10 @@ export function MobileNavigation() {
                 {t.solutions.taxFreeRetirement}
               </Link>
               <Link
-                href="/solutions/annuity"
+                href="/solutions/guaranteed-income"
                 className={cn(
                   "text-sm transition-colors hover:text-primary",
-                  pathname === "/solutions/annuity" ? "text-primary" : "text-muted-foreground",
+                  pathname === "/solutions/guaranteed-income" ? "text-primary" : "text-muted-foreground",
                 )}
               >
                 {t.solutions.annuity}

@@ -106,7 +106,7 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="mt-12 pt-8 border-t border-border text-center">
-          <p className="text-sm text-muted-foreground">© 2025 新睿保險經紀代理公司。保留所有權利。</p>
+          <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} 新睿保險集團。保留所有權利。</p>
         </div>
       </div>
     </footer>

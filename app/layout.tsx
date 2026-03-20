@@ -13,57 +13,45 @@ const notoSansTC = Noto_Sans_TC({
 })
 
 export const metadata: Metadata = {
-  title: "NewGen 新睿保險集團 - 保護您最重要的家人",
+  title: "NewGen Insurance Agency | Life Insurance with Living Benefits | Burlingame, CA",
   description:
-    "用創新壽險方案守護最重要的家人。提供全面的人壽保險保障，不僅在您離世時提供保障，更在您面臨生活中的重大挑戰時提供支持。",
-  keywords: "人壽保險, 生前福利, 重大疾病保險, 保障家人, 新睿保險, 保險規劃",
-  authors: [{ name: "NewGen Insurance" }],
-  creator: "NewGen Insurance",
-  publisher: "NewGen Insurance",
+    "NewGen Insurance Agency Networks in Burlingame, CA — independent life insurance agents helping families protect what matters most. Living benefits, tax-free cash value, and personalized coverage from top-rated carriers.",
+  keywords:
+    "NewGen Insurance Agency, NewGen Insurance, life insurance Burlingame CA, life insurance agency California, living benefits life insurance, independent insurance agent, family life insurance, critical illness insurance, tax-free retirement",
+  authors: [{ name: "NewGen Insurance Agency Networks" }],
+  creator: "NewGen Insurance Agency Networks",
+  publisher: "NewGen Insurance Agency Networks",
   openGraph: {
     type: "website",
-    locale: "zh_TW",
+    locale: "en_US",
     url: "https://newgen-insurance.com",
-    siteName: "NewGen Insurance",
-    title: "NewGen 新睿保險集團 - 保護您最重要的家人",
-    description: "用創新壽險方案守護最重要的家人。",
+    siteName: "NewGen Insurance Agency",
+    title: "NewGen Insurance Agency | Life Insurance with Living Benefits",
+    description:
+      "Independent life insurance agency in Burlingame, CA. We help families protect their future with living benefits, tax-free cash accumulation, and personalized plans from top carriers.",
     images: [
       {
-        url: "https://newgen-insurance.com/og-image.jpg",
+        url: "https://ik.imagekit.io/lucalink/NewGen/Assets/hero.webp",
         width: 1200,
         height: 630,
-        alt: "NewGen Insurance",
+        alt: "NewGen Insurance Agency",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NewGen 新睿保險集團 - 保護您最重要的家人",
-    description: "用創新壽險方案守護最重要的家人。",
-    images: ["https://newgen-insurance.com/twitter-image.jpg"],
+    title: "NewGen Insurance Agency | Life Insurance with Living Benefits",
+    description:
+      "Independent life insurance agency in Burlingame, CA. Living benefits, tax-free cash value, and personalized coverage.",
+    images: ["https://ik.imagekit.io/lucalink/NewGen/Assets/hero.webp"],
     creator: "@newgeninsurance",
   },
   robots: "index, follow",
   alternates: {
     canonical: "https://newgen-insurance.com",
   },
-  generator: "v0.app",
   icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
   },
 }
 
@@ -73,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="zh-TW">
+    <html lang="en" suppressHydrationWarning>
       <head>{/* SEO metadata is now handled by Metadata export above */}</head>
       <body className={`${notoSansTC.variable} font-sans antialiased`}>
         <LanguageProvider>

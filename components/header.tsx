@@ -8,9 +8,11 @@ import { MainNavigation } from "@/components/main-navigation"
 import { MobileNavigation } from "@/components/mobile-navigation"
 import { useState } from "react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { useLanguage } from "@/contexts/language-context"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { language, setLanguage } = useLanguage()
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
@@ -54,9 +56,12 @@ export function Header() {
             </a>
             {/* End of new buttons */}
 
-            <button className="hidden items-center gap-2 text-foreground hover:text-info transition-colors">
+            <button
+              onClick={() => setLanguage(language === "en" ? "zh" : "en")}
+              className="hidden md:inline-flex items-center gap-2 text-foreground hover:text-info transition-colors border border-border rounded-full px-3 py-1.5"
+            >
               <Globe className="w-4 h-4" />
-              <span className="text-sm font-medium">English</span>
+              <span className="text-sm font-medium">{language === "en" ? "中文" : "English"}</span>
             </button>
             <Button className="hidden md:inline-flex bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-6 rounded-full">
               預約諮詢
@@ -90,9 +95,15 @@ export function Header() {
                     </a>
                     {/* End of new buttons */}
                     <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full">
-                      預約諮詢
+                      {language === "en" ? "Schedule Consultation" : "預約諮詢"}
                     </Button>
-                    
+                    <button
+                      onClick={() => setLanguage(language === "en" ? "zh" : "en")}
+                      className="w-full flex items-center justify-center gap-2 text-foreground hover:text-info transition-colors border border-border rounded-full px-3 py-2"
+                    >
+                      <Globe className="w-4 h-4" />
+                      <span className="text-sm font-medium">{language === "en" ? "切換至中文" : "Switch to English"}</span>
+                    </button>
                   </div>
                 </div>
               </SheetContent>

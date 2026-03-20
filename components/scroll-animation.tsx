@@ -12,6 +12,19 @@ interface ScrollAnimationProps {
   threshold?: number
 }
 
+const getHiddenStyle = (animation: ScrollAnimationProps["animation"]): React.CSSProperties => {
+  switch (animation) {
+    case "fadeInLeft":
+      return { opacity: 0, transform: "translateX(-24px)" }
+    case "fadeInRight":
+      return { opacity: 0, transform: "translateX(24px)" }
+    case "scaleIn":
+      return { opacity: 0, transform: "scale(0.92)" }
+    default:
+      return { opacity: 0, transform: "translateY(24px)" }
+  }
+}
+
 export function ScrollAnimation({
   children,
   className = "",
@@ -40,11 +53,19 @@ export function ScrollAnimation({
     return () => observer.disconnect()
   }, [threshold])
 
-  const animationClass = isVisible ? `animate-${animation.replace(/([A-Z])/g, "-$1").toLowerCase()}` : "opacity-0"
-  const delayClass = delay > 0 ? `animate-delay-${delay}` : ""
+  const style: React.CSSProperties = isVisible
+    ? {
+        opacity: 1,
+        transform: "none",
+        transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`,
+      }
+    : {
+        ...getHiddenStyle(animation),
+        transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`,
+      }
 
   return (
-    <div ref={ref} className={`${animationClass} ${delayClass} ${className}`}>
+    <div ref={ref} style={style} className={className}>
       {children}
     </div>
   )
