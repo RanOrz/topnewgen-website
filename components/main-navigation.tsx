@@ -39,7 +39,7 @@ export function MainNavigation() {
   const t = translations[language]
 
   return (
-    <NavigationMenu className="hidden md:flex">
+    <NavigationMenu className="hidden md:flex" viewport={false}>
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger
