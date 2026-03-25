@@ -246,8 +246,6 @@ export const translations = {
       about: "About Us",
       aboutDesc: "Learn about our history, mission, and values.",
       team: "Our Team",
-      teamDesc: "Meet the dedicated professionals who help  and values.",
-      team: "Our Team",
       teamDesc: "Meet the dedicated professionals who help protect your family's future.",
       careers: "Careers",
       careersDesc: "Join our team of passionate insurance professionals.",
