@@ -63,9 +63,11 @@ export function Header() {
               <Globe className="w-4 h-4" />
               <span className="text-sm font-medium">{language === "en" ? "中文" : "English"}</span>
             </button>
-            <Button className="hidden md:inline-flex bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-6 rounded-full">
-              預約諮詢
-            </Button>
+            <Link href="/contact" className="hidden md:inline-flex">
+              <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-6 rounded-full">
+                預約諮詢
+              </Button>
+            </Link>
 
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
@@ -73,36 +75,44 @@ export function Header() {
                   {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                <div className="mt-8">
-                  <MobileNavigation />
-                  <div className="mt-6 space-y-4">
-                    <a
-                      href="https://member.topnewgen.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-center text-sm font-medium px-4 py-2 text-foreground hover:text-info transition-colors"
-                    >
-                      NewGen社群
-                    </a>
-                    <a
-                      href="https://app.topnewgen.com/login"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-center text-sm font-medium px-4 py-2 text-foreground hover:text-info transition-colors"
-                    >
-                      代理人工作臺
-                    </a>
-                    {/* End of new buttons */}
-                    <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full">
-                      {language === "en" ? "Schedule Consultation" : "預約諮詢"}
-                    </Button>
+              <SheetContent side="right" className="w-full sm:w-[380px] flex flex-col">
+                <div className="flex flex-col flex-1 pt-4 overflow-y-auto">
+                  {/* Primary Navigation */}
+                  <div className="flex-1">
+                    <MobileNavigation />
+                  </div>
+
+                  {/* Bottom actions */}
+                  <div className="border-t border-border pt-6 pb-4 space-y-3">
+                    <Link href="/company/contact" onClick={() => setMobileMenuOpen(false)}>
+                      <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full text-base py-5">
+                        {language === "en" ? "Schedule Consultation" : "預約諮詢"}
+                      </Button>
+                    </Link>
+                    <div className="flex gap-3">
+                      <a
+                        href="https://member.topnewgen.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 text-center text-sm font-medium px-3 py-2.5 rounded-full border border-border text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+                      >
+                        NewGen社群
+                      </a>
+                      <a
+                        href="https://app.topnewgen.com/login"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 text-center text-sm font-medium px-3 py-2.5 rounded-full border border-border text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+                      >
+                        代理人工作臺
+                      </a>
+                    </div>
                     <button
                       onClick={() => setLanguage(language === "en" ? "zh" : "en")}
-                      className="w-full flex items-center justify-center gap-2 text-foreground hover:text-info transition-colors border border-border rounded-full px-3 py-2"
+                      className="w-full flex items-center justify-center gap-2 text-muted-foreground hover:text-primary transition-colors py-2"
                     >
                       <Globe className="w-4 h-4" />
-                      <span className="text-sm font-medium">{language === "en" ? "切換至中文" : "Switch to English"}</span>
+                      <span className="text-sm">{language === "en" ? "切換至中文" : "Switch to English"}</span>
                     </button>
                   </div>
                 </div>

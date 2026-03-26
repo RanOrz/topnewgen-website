@@ -8,8 +8,6 @@ import Link from "next/link"
 export function HeroSection() {
   const { t } = useLanguage()
 
-  const points = [t.about.point1, t.about.point2, t.about.point3, t.about.point4]
-
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background image with gradient overlay */}
@@ -29,26 +27,8 @@ export function HeroSection() {
             {t.hero.title}
           </h1>
 
-          <p className="text-xl md:text-2xl text-white/95 mb-8 leading-relaxed font-medium">
+          <p className="text-xl md:text-2xl text-white/95 mb-10 leading-relaxed font-medium">
             {t.hero.subtitle}
-          </p>
-
-          <div className="mb-8 space-y-4">
-            <p className="text-lg md:text-xl text-white/90 leading-relaxed font-medium">
-              {t.about.description}
-            </p>
-            <ul className="space-y-3 text-base md:text-lg text-white/90">
-              {points.map((point, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="text-accent mt-1 text-2xl">•</span>
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <p className="text-lg md:text-xl text-white/95 mb-10 leading-relaxed font-medium">
-            {t.about.subheading}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">

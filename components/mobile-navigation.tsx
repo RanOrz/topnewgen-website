@@ -13,12 +13,12 @@ export function MobileNavigation() {
   const t = translations[language]
 
   return (
-    <div className="flex flex-col gap-6 py-6">
+    <div className="flex flex-col gap-2 py-2">
       <Link
         href="/"
         className={cn(
-          "text-sm font-medium transition-colors hover:text-primary",
-          pathname === "/" ? "text-primary" : "text-muted-foreground",
+          "text-base font-medium transition-colors hover:text-primary px-2 py-3",
+          pathname === "/" ? "text-primary" : "text-foreground",
         )}
       >
         {t.nav.home}
@@ -26,7 +26,7 @@ export function MobileNavigation() {
 
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="solutions">
-          <AccordionTrigger className="text-sm font-medium">{t.nav.solutions}</AccordionTrigger>
+          <AccordionTrigger className="text-base font-medium px-2">{t.nav.solutions}</AccordionTrigger>
           <AccordionContent>
             <div className="flex flex-col gap-3 pl-4">
               <Link
@@ -88,7 +88,7 @@ export function MobileNavigation() {
         </AccordionItem>
 
         <AccordionItem value="resources">
-          <AccordionTrigger className="text-sm font-medium">{t.nav.resources}</AccordionTrigger>
+          <AccordionTrigger className="text-base font-medium px-2">{t.nav.resources}</AccordionTrigger>
           <AccordionContent>
             <div className="flex flex-col gap-3 pl-4">
               <Link
@@ -141,7 +141,7 @@ export function MobileNavigation() {
         </AccordionItem>
 
         <AccordionItem value="company">
-          <AccordionTrigger className="text-sm font-medium">{t.nav.company}</AccordionTrigger>
+          <AccordionTrigger className="text-base font-medium px-2">{t.nav.company}</AccordionTrigger>
           <AccordionContent>
             <div className="flex flex-col gap-3 pl-4">
               <Link
