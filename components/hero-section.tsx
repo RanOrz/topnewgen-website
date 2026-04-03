@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Phone } from "lucide-react"
+import { Phone, Briefcase } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import Link from "next/link"
 
@@ -14,7 +14,7 @@ export function HeroSection() {
       <div className="absolute inset-0 z-0">
         <img
           src="https://ik.imagekit.io/lucalink/NewGen/Assets/hero.webp"
-          alt="新睿保險集團"
+          alt="NewGen Insurance Group"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40" />
@@ -31,6 +31,7 @@ export function HeroSection() {
             {t.hero.subtitle}
           </p>
 
+          {/* Client CTAs */}
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/company/contact">
               <Button
@@ -50,6 +51,20 @@ export function HeroSection() {
               >
                 {t.hero.cta2}
               </Button>
+            </Link>
+          </div>
+
+          {/* Agent / Recruiting entry */}
+          <div className="mt-8 pt-8 border-t border-white/20">
+            <Link href="/join">
+              <button className="group inline-flex items-center gap-3 text-white/75 hover:text-white transition-colors duration-200">
+                <span className="flex items-center justify-center w-9 h-9 rounded-full bg-white/10 group-hover:bg-accent/20 transition-colors duration-200">
+                  <Briefcase className="w-4 h-4 text-accent" />
+                </span>
+                <span className="text-base font-medium">
+                  {t.recruiting.navLabel} →
+                </span>
+              </button>
             </Link>
           </div>
         </div>

@@ -12,7 +12,7 @@ import { useLanguage } from "@/contexts/language-context"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { language, setLanguage } = useLanguage()
+  const { language, setLanguage, t } = useLanguage()
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
@@ -29,7 +29,7 @@ export function Header() {
             />
             <div className="flex flex-col">
               <span className="text-xl font-bold text-primary">NewGen</span>
-              <span className="text-sm text-muted-foreground">新睿保險集團</span>
+              <span className="text-sm text-muted-foreground">{t.header.insuranceGroup}</span>
             </div>
           </Link>
 
@@ -44,7 +44,7 @@ export function Header() {
               rel="noopener noreferrer"
               className="hidden md:inline-flex items-center gap-2 text-foreground hover:text-info transition-colors text-sm font-medium px-4 py-2"
             >
-              NewGen社群
+              {t.header.community}
             </a>
             <a
               href="https://app.topnewgen.com/login"
@@ -52,7 +52,7 @@ export function Header() {
               rel="noopener noreferrer"
               className="hidden md:inline-flex items-center gap-2 text-foreground hover:text-info transition-colors text-sm font-medium px-4 py-2"
             >
-              代理人工作臺
+              {t.header.agentDashboard}
             </a>
             {/* End of new buttons */}
 
@@ -65,7 +65,7 @@ export function Header() {
             </button>
             <Link href="/contact" className="hidden md:inline-flex">
               <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-6 rounded-full">
-                預約諮詢
+                {t.nav.scheduleCall}
               </Button>
             </Link>
 
@@ -96,7 +96,7 @@ export function Header() {
                         rel="noopener noreferrer"
                         className="flex-1 text-center text-sm font-medium px-3 py-2.5 rounded-full border border-border text-muted-foreground hover:text-primary hover:border-primary transition-colors"
                       >
-                        NewGen社群
+                        {t.header.community}
                       </a>
                       <a
                         href="https://app.topnewgen.com/login"
@@ -104,7 +104,7 @@ export function Header() {
                         rel="noopener noreferrer"
                         className="flex-1 text-center text-sm font-medium px-3 py-2.5 rounded-full border border-border text-muted-foreground hover:text-primary hover:border-primary transition-colors"
                       >
-                        代理人工作臺
+                        {t.header.agentDashboard}
                       </a>
                     </div>
                     <button
