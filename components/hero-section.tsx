@@ -13,11 +13,11 @@ export function HeroSection() {
       {/* Background image with gradient overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1920&q=85&fit=crop"
+          src="/hero.png"
           alt="NewGen Insurance Group"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40" />
+        <div className="absolute inset-0" style={{background: "linear-gradient(to right, hsl(215 45% 32% / 0.80), hsl(215 45% 32% / 0.60), hsl(215 45% 32% / 0.25))"}} />
       </div>
 
       {/* Content */}
