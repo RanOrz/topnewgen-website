@@ -13,7 +13,7 @@ export function HeroSection() {
       {/* Background image with gradient overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=85&fit=crop"
+          src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1920&q=85&fit=crop"
           alt="NewGen Insurance Group"
           className="w-full h-full object-cover"
         />

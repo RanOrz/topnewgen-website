@@ -21,16 +21,12 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="https://ik.imagekit.io/lucalink/NewGen/NewGen_Icon_128.png"
-              alt="NewGen"
-              width={40}
-              height={40}
-              className="h-10 w-10"
+              src="/logo.svg"
+              alt="NewGen Insurance Agency Networks"
+              width={160}
+              height={48}
+              className="h-12 w-auto"
             />
-            <div className="flex flex-col">
-              <span className="text-xl font-bold text-primary">NewGen</span>
-              <span className="text-sm text-muted-foreground">{t.header.insuranceGroup}</span>
-            </div>
           </Link>
 
           <MainNavigation />

@@ -1,15 +1,15 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Noto_Sans_TC } from "next/font/google"
+import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { LanguageProvider } from "@/contexts/language-context"
 import { StructuredData } from "@/components/structured-data"
 
-const notoSansTC = Noto_Sans_TC({
+const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-noto-sans-tc",
+  variable: "--font-inter",
 })
 
 export const metadata: Metadata = {
@@ -63,7 +63,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>{/* SEO metadata is now handled by Metadata export above */}</head>
-      <body className={`${notoSansTC.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} font-sans antialiased`}>
         <LanguageProvider>
           <StructuredData />
           {children}
