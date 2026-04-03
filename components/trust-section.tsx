@@ -89,10 +89,10 @@ export function TrustSection() {
           <div>
             <h3 className="text-2xl font-semibold mb-8 text-center text-gradient-gold">Our Trusted Carrier Partners</h3>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 auto-rows-[1fr]">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
               {carriers.map((carrier, index) => (
                 <div key={carrier.id} className="aspect-[3/2]">
-                  <ScrollAnimation animation="scaleIn" delay={index * 100}>
+                  <ScrollAnimation animation="scaleIn" delay={index * 100} className="h-full">
                     <CarrierLogo src={carrier.src} alt={carrier.alt} />
                   </ScrollAnimation>
                 </div>

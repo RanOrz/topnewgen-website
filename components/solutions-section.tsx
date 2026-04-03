@@ -43,12 +43,14 @@ export function SolutionsSection() {
             const Icon = solution.icon
             return (
               <Card key={solution.href} className="p-8 bg-card hover:shadow-lg transition-shadow h-full">
-                <div className="flex flex-col items-center text-center gap-4">
-                  <div className="w-16 h-16 rounded-2xl bg-accent flex items-center justify-center">
-                    <Icon className="w-8 h-8 text-accent-foreground" strokeWidth={2} />
+                <div className="flex flex-col items-center text-center h-full justify-between gap-4">
+                  <div className="flex flex-col items-center text-center gap-4">
+                    <div className="w-16 h-16 rounded-2xl bg-accent flex items-center justify-center">
+                      <Icon className="w-8 h-8 text-accent-foreground" strokeWidth={2} />
+                    </div>
+                    <h3 className="text-xl font-bold text-primary">{solution.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{solution.description}</p>
                   </div>
-                  <h3 className="text-xl font-bold text-primary">{solution.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{solution.description}</p>
                   <Link href={solution.href} className="w-full mt-2">
                     <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
                       {t.solutions.learnMore}
