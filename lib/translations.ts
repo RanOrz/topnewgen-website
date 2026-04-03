@@ -363,7 +363,7 @@ export const translations = {
     header: {
       community: "NewGen Community",
       agentDashboard: "Agent Dashboard",
-      insuranceGroup: "Insurance Group",
+      insuranceGroup: "Insurance Agency Networks",
     },
     // Recruiting Section
     recruiting: {
