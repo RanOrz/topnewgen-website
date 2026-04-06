@@ -25,8 +25,7 @@ import {
   Info,
   Users,
   Briefcase,
-  Award,
-  Mail,
+  UserPlus,
   ShieldPlus,
   HandCoins,
   Stethoscope,
@@ -261,25 +260,12 @@ export function MainNavigation() {
               <li>
                 <NavigationMenuLink asChild>
                   <Link
-                    href="/company/why-choose-us"
+                    href="/join"
                     className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                   >
                     <div className="flex items-center">
-                      <Award className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium leading-none">{t.company.whyChooseUs}</span>
-                    </div>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/company/contact"
-                    className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                  >
-                    <div className="flex items-center">
-                      <Mail className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium leading-none">{t.company.contact}</span>
+                      <UserPlus className="mr-2 h-4 w-4 text-blue-400" />
+                      <span className="text-sm font-medium leading-none">{t.company.joinUs}</span>
                     </div>
                   </Link>
                 </NavigationMenuLink>

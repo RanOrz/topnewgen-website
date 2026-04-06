@@ -249,10 +249,8 @@ export const translations = {
       teamDesc: "Meet the dedicated professionals who help protect your family's future.",
       careers: "Careers",
       careersDesc: "Join our team of passionate insurance professionals.",
-      whyChooseUs: "Why Choose NewGen",
-      whyChooseUsDesc: "Discover what sets us apart from other insurance agencies.",
-      contact: "Contact Us",
-      contactDesc: "Get in touch with our team for personalized assistance.",
+      joinUs: "Join Us",
+      joinUsDesc: "Become an independent agent at NewGen and build your own business.",
     },
     // Legal Section
     legal: {
@@ -676,10 +674,8 @@ export const translations = {
       teamDesc: "認識幫助保護您家人未來的專業人士。",
       careers: "職業機會",
       careersDesc: "加入我們充滿熱情的保險專業人士團隊。",
-      whyChooseUs: "為什麼選擇新睿",
-      whyChooseUsDesc: "發現我們與其他保險代理機構的不同之處。",
-      contact: "聯繫我們",
-      contactDesc: "與我們的團隊聯繫，獲取個性化幫助。",
+      joinUs: "加入我們",
+      joinUsDesc: "成為新睿的獨立代理人，開創屬於自己的事業。",
     },
     // Legal Section
     legal: {

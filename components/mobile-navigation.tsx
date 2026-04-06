@@ -172,22 +172,13 @@ export function MobileNavigation() {
                 {t.company.careers}
               </Link>
               <Link
-                href="/company/why-choose-us"
+                href="/join"
                 className={cn(
                   "text-sm transition-colors hover:text-primary",
-                  pathname === "/company/why-choose-us" ? "text-primary" : "text-muted-foreground",
+                  pathname === "/join" ? "text-primary" : "text-muted-foreground",
                 )}
               >
-                {t.company.whyChooseUs}
-              </Link>
-              <Link
-                href="/company/contact"
-                className={cn(
-                  "text-sm transition-colors hover:text-primary",
-                  pathname === "/company/contact" ? "text-primary" : "text-muted-foreground",
-                )}
-              >
-                {t.company.contact}
+                {t.company.joinUs}
               </Link>
             </div>
           </AccordionContent>
