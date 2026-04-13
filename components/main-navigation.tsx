@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useLanguage } from "@/contexts/language-context"
-import { translations } from "@/lib/translations"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,52 +11,51 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
-import {
-  ShieldCheck,
-  BookOpen,
-  Building2,
-  Wallet,
-  FileText,
-  Newspaper,
-  Calculator,
-  Video,
-  Download,
-  Info,
-  Users,
-  Briefcase,
-  UserPlus,
-  ShieldPlus,
-  HandCoins,
-  Stethoscope,
-  GraduationCap,
-} from "lucide-react"
+import { BookOpen, Newspaper, Video, Download, ShieldPlus, HandCoins, Wallet, Users, GraduationCap } from "lucide-react"
 
 export function MainNavigation() {
   const pathname = usePathname()
   const { language } = useLanguage()
-  const t = translations[language]
+
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(href + "/")
 
   return (
     <NavigationMenu className="hidden md:flex" viewport={false}>
-      <NavigationMenuList>
+      <NavigationMenuList className="gap-2">
+
+        {/* Join Our Team */}
+        <NavigationMenuItem>
+          <Link
+            href="/join"
+            className={`text-sm font-medium transition-colors px-4 py-2 inline-flex items-center hover:text-primary ${
+              isActive("/join") ? "text-primary" : "text-muted-foreground"
+            }`}
+          >
+            {language === "en" ? "Join Our Team" : "加入我們"}
+          </Link>
+        </NavigationMenuItem>
+
+        {/* About Newgen */}
         <NavigationMenuItem>
           <NavigationMenuTrigger
-            className="bg-transparent hover:bg-accent hover:text-accent-foreground"
+            className={`bg-transparent hover:bg-transparent text-sm font-medium transition-colors ${
+              isActive("/company") ? "text-primary" : "text-muted-foreground hover:text-primary"
+            }`}
           >
-            <ShieldCheck className="mr-2 h-5 w-5 text-info" />
-            {t.nav.solutions}
+            {language === "en" ? "About Newgen" : "關於我們"}
           </NavigationMenuTrigger>
-          <NavigationMenuContent className="w-fit">
-            <ul className="grid w-[200px] gap-2 p-2 md:w-[200px] lg:w-[200px]">
+          <NavigationMenuContent>
+            <ul className="grid w-[200px] gap-2 p-2">
               <li>
                 <NavigationMenuLink asChild>
                   <Link
-                    href="/solutions/life-insurance"
-                    className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    href="/company/team"
+                    className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
                   >
                     <div className="flex items-center">
-                      <ShieldPlus className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium leading-none">{t.solutions.lifeInsurance}</span>
+                      <Users className="mr-2 h-4 w-4 text-blue-400" />
+                      <span className="text-sm font-medium">{language === "en" ? "Our Team" : "成員介紹"}</span>
                     </div>
                   </Link>
                 </NavigationMenuLink>
@@ -65,64 +63,12 @@ export function MainNavigation() {
               <li>
                 <NavigationMenuLink asChild>
                   <Link
-                    href="/solutions/college-funding"
-                    className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    href="/company/why-choose-us"
+                    className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
                   >
                     <div className="flex items-center">
                       <GraduationCap className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium leading-none">{t.solutions.collegeFunding}</span>
-                    </div>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/solutions/guaranteed-income"
-                    className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                  >
-                    <div className="flex items-center">
-                      <HandCoins className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium leading-none">{t.solutions.annuity}</span>
-                    </div>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/solutions/tax-free-retirement"
-                    className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                  >
-                    <div className="flex items-center">
-                      <Wallet className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium leading-none">{t.solutions.taxFreeRetirement}</span>
-                    </div>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/solutions/long-term-care"
-                    className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                  >
-                    <div className="flex items-center">
-                      <Stethoscope className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium leading-none">{t.solutions.longTermCare}</span>
-                    </div>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/solutions/estate-planning"
-                    className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                  >
-                    <div className="flex items-center">
-                      <FileText className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium leading-none">{t.solutions.estatePlanning}</span>
+                      <span className="text-sm font-medium">{language === "en" ? "Training System" : "培訓體系"}</span>
                     </div>
                   </Link>
                 </NavigationMenuLink>
@@ -131,50 +77,26 @@ export function MainNavigation() {
           </NavigationMenuContent>
         </NavigationMenuItem>
 
+        {/* Resources */}
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="bg-transparent hover:bg-accent hover:text-accent-foreground">
-            <div className="flex items-center">
-              <BookOpen className="mr-2 h-5 w-5 text-info" />
-              {t.nav.resources}
-            </div>
+          <NavigationMenuTrigger
+            className={`bg-transparent hover:bg-transparent text-sm font-medium transition-colors ${
+              isActive("/resources") ? "text-primary" : "text-muted-foreground hover:text-primary"
+            }`}
+          >
+            {language === "en" ? "Resources" : "資源"}
           </NavigationMenuTrigger>
-          <NavigationMenuContent className="w-fit">
-            <ul className="grid w-[200px] gap-2 p-2 md:w-[200px] lg:w-[200px]">
+          <NavigationMenuContent>
+            <ul className="grid w-[180px] gap-2 p-2">
               <li>
                 <NavigationMenuLink asChild>
                   <Link
                     href="/resources/blog"
-                    className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
                   >
                     <div className="flex items-center">
                       <BookOpen className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium leading-none">{t.resources.blog}</span>
-                    </div>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/resources/news"
-                    className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                  >
-                    <div className="flex items-center">
-                      <Newspaper className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium leading-none">{t.resources.news}</span>
-                    </div>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/resources/calculators"
-                    className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                  >
-                    <div className="flex items-center">
-                      <Calculator className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium leading-none">{t.resources.calculators}</span>
+                      <span className="text-sm font-medium">Blog</span>
                     </div>
                   </Link>
                 </NavigationMenuLink>
@@ -183,11 +105,11 @@ export function MainNavigation() {
                 <NavigationMenuLink asChild>
                   <Link
                     href="/resources/webinars"
-                    className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
                   >
                     <div className="flex items-center">
                       <Video className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium leading-none">{t.resources.webinars}</span>
+                      <span className="text-sm font-medium">Webinars</span>
                     </div>
                   </Link>
                 </NavigationMenuLink>
@@ -196,11 +118,11 @@ export function MainNavigation() {
                 <NavigationMenuLink asChild>
                   <Link
                     href="/resources/downloads"
-                    className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
                   >
                     <div className="flex items-center">
                       <Download className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium leading-none">{t.resources.downloads}</span>
+                      <span className="text-sm font-medium">Downloads</span>
                     </div>
                   </Link>
                 </NavigationMenuLink>
@@ -209,24 +131,26 @@ export function MainNavigation() {
           </NavigationMenuContent>
         </NavigationMenuItem>
 
+        {/* Insurance Solutions */}
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="bg-transparent hover:bg-accent hover:text-accent-foreground">
-            <div className="flex items-center">
-              <Building2 className="mr-2 h-5 w-5 text-info" />
-              {t.nav.company}
-            </div>
+          <NavigationMenuTrigger
+            className={`bg-transparent hover:bg-transparent text-sm font-medium transition-colors ${
+              isActive("/solutions") ? "text-primary" : "text-muted-foreground hover:text-primary"
+            }`}
+          >
+            {language === "en" ? "Insurance Solutions" : "保險方案"}
           </NavigationMenuTrigger>
-          <NavigationMenuContent className="w-fit">
-            <ul className="grid w-[200px] gap-2 p-2 md:w-[200px] lg:w-[200px]">
+          <NavigationMenuContent>
+            <ul className="grid w-[200px] gap-2 p-2">
               <li>
                 <NavigationMenuLink asChild>
                   <Link
-                    href="/company/about"
-                    className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    href="/solutions/tax-free-retirement"
+                    className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
                   >
                     <div className="flex items-center">
-                      <Info className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium leading-none">{t.company.about}</span>
+                      <Wallet className="mr-2 h-4 w-4 text-blue-400" />
+                      <span className="text-sm font-medium">IUL</span>
                     </div>
                   </Link>
                 </NavigationMenuLink>
@@ -234,12 +158,12 @@ export function MainNavigation() {
               <li>
                 <NavigationMenuLink asChild>
                   <Link
-                    href="/company/team"
-                    className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    href="/solutions/guaranteed-income"
+                    className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
                   >
                     <div className="flex items-center">
-                      <Users className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium leading-none">{t.company.team}</span>
+                      <HandCoins className="mr-2 h-4 w-4 text-blue-400" />
+                      <span className="text-sm font-medium">{language === "en" ? "Annuity" : "年金"}</span>
                     </div>
                   </Link>
                 </NavigationMenuLink>
@@ -247,25 +171,12 @@ export function MainNavigation() {
               <li>
                 <NavigationMenuLink asChild>
                   <Link
-                    href="/company/careers"
-                    className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    href="/solutions/life-insurance"
+                    className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
                   >
                     <div className="flex items-center">
-                      <Briefcase className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium leading-none">{t.company.careers}</span>
-                    </div>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/join"
-                    className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                  >
-                    <div className="flex items-center">
-                      <UserPlus className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium leading-none">{t.company.joinUs}</span>
+                      <ShieldPlus className="mr-2 h-4 w-4 text-blue-400" />
+                      <span className="text-sm font-medium">Term</span>
                     </div>
                   </Link>
                 </NavigationMenuLink>
@@ -273,6 +184,7 @@ export function MainNavigation() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
+
       </NavigationMenuList>
     </NavigationMenu>
   )

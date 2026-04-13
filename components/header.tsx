@@ -32,25 +32,7 @@ export function Header() {
           <MainNavigation />
 
           {/* Right side */}
-          <div className="flex items-center gap-4">
-            {/* NewGen Community and Agent Dashboard buttons */}
-            <a
-              href="https://member.topnewgen.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:inline-flex items-center gap-2 text-foreground hover:text-info transition-colors text-sm font-medium px-4 py-2"
-            >
-              {t.header.community}
-            </a>
-            <a
-              href="https://app.topnewgen.com/login"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:inline-flex items-center gap-2 text-foreground hover:text-info transition-colors text-sm font-medium px-4 py-2"
-            >
-              {t.header.agentDashboard}
-            </a>
-            {/* End of new buttons */}
+          <div className="flex items-center gap-6">
 
             <button
               onClick={() => setLanguage(language === "en" ? "zh" : "en")}
@@ -61,7 +43,7 @@ export function Header() {
             </button>
             <Link href="/contact" className="hidden md:inline-flex">
               <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-6 rounded-full">
-                {t.nav.scheduleCall}
+                {language === "en" ? "Contact Us" : "聯絡我們"}
               </Button>
             </Link>
 
