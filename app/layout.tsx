@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { LanguageProvider } from "@/contexts/language-context"
 import { StructuredData } from "@/components/structured-data"
+import { ChatWidget } from "@/components/chat-widget"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -67,6 +68,7 @@ export default function RootLayout({
         <LanguageProvider>
           <StructuredData />
           {children}
+          <ChatWidget />
           <Analytics />
         </LanguageProvider>
       </body>
