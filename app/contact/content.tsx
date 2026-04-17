@@ -17,23 +17,46 @@ export function ContactContent() {
   const [submitting, setSubmitting] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
 
-  function validate(name: string, phone: string, email: string) {
+  const [name, setName] = useState("")
+  const [phone, setPhone] = useState("")
+  const [email, setEmail] = useState("")
+
+  function formatPhone(raw: string) {
+    const digits = raw.replace(/\D/g, "").slice(0, 10)
+    if (digits.length <= 3) return digits
+    if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`
+  }
+
+  function validateField(field: string, value: string) {
+    if (field === "name") {
+      if (value.trim().length < 2) return language === "en" ? "Please enter your full name." : "請輸入您的姓名。"
+    }
+    if (field === "phone") {
+      const digits = value.replace(/\D/g, "")
+      if (digits.length !== 10) return language === "en" ? "Please enter a valid 10-digit US phone number." : "請輸入有效的10位美國電話號碼。"
+    }
+    if (field === "email") {
+      if (!/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(value.trim())) return language === "en" ? "Please enter a valid email address." : "請輸入有效的電子郵件地址。"
+    }
+    return ""
+  }
+
+  function validate() {
     const errs: Record<string, string> = {}
     if (!intent) errs.intent = language === "en" ? "Please select an option." : "請選擇一個選項。"
-    if (name.trim().length < 2) errs.name = language === "en" ? "Please enter your full name." : "請輸入您的姓名。"
-    if (!phone.trim() || !/^\+?[\d\s\-().]{7,15}$/.test(phone.trim())) errs.phone = language === "en" ? "Please enter a valid phone number." : "請輸入有效的電話號碼。"
-    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) errs.email = language === "en" ? "Please enter a valid email address." : "請輸入有效的電子郵件地址。"
+    const nameErr = validateField("name", name)
+    if (nameErr) errs.name = nameErr
+    const phoneErr = validateField("phone", phone)
+    if (phoneErr) errs.phone = phoneErr
+    const emailErr = validateField("email", email)
+    if (emailErr) errs.email = emailErr
     return errs
   }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    const form = e.currentTarget
-    const name = (form.elements.namedItem("name") as HTMLInputElement).value
-    const email = (form.elements.namedItem("email") as HTMLInputElement).value
-    const phone = (form.elements.namedItem("phone") as HTMLInputElement).value
-
-    const errs = validate(name, phone, email)
+    const errs = validate()
     if (Object.keys(errs).length > 0) {
       setErrors(errs)
       return
@@ -222,6 +245,9 @@ export function ContactContent() {
                       </label>
                       <input
                         name="name" type="text"
+                        value={name}
+                        onChange={e => { setName(e.target.value); if (errors.name) setErrors(p => ({ ...p, name: validateField("name", e.target.value) })) }}
+                        onBlur={e => setErrors(p => ({ ...p, name: validateField("name", e.target.value) }))}
                         placeholder={language === "en" ? "Your full name" : "您的姓名"}
                         className={`border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 bg-secondary/40 ${errors.name ? "border-destructive" : "border-border"}`}
                       />
@@ -233,6 +259,9 @@ export function ContactContent() {
                       </label>
                       <input
                         name="phone" type="tel"
+                        value={phone}
+                        onChange={e => { const v = formatPhone(e.target.value); setPhone(v); if (errors.phone) setErrors(p => ({ ...p, phone: validateField("phone", v) })) }}
+                        onBlur={e => setErrors(p => ({ ...p, phone: validateField("phone", e.target.value) }))}
                         placeholder="(XXX) XXX-XXXX"
                         className={`border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 bg-secondary/40 ${errors.phone ? "border-destructive" : "border-border"}`}
                       />
@@ -246,6 +275,9 @@ export function ContactContent() {
                     </label>
                     <input
                       name="email" type="email"
+                      value={email}
+                      onChange={e => { setEmail(e.target.value); if (errors.email) setErrors(p => ({ ...p, email: validateField("email", e.target.value) })) }}
+                      onBlur={e => setErrors(p => ({ ...p, email: validateField("email", e.target.value) }))}
                       placeholder="your@email.com"
                       className={`border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 bg-secondary/40 ${errors.email ? "border-destructive" : "border-border"}`}
                     />
