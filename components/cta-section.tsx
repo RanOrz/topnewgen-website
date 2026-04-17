@@ -23,7 +23,7 @@ export function CtaSection() {
           {t.cta.subtitle}
         </p>
 
-        <Link href="/company/contact">
+        <Link href="/contact">
           <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg px-8 py-6 rounded-full">
             {t.cta.button}
           </Button>

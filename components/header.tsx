@@ -62,7 +62,7 @@ export function Header() {
 
                   {/* Bottom actions */}
                   <div className="border-t border-border pt-6 pb-4 space-y-3">
-                    <Link href="/company/contact" onClick={() => setMobileMenuOpen(false)}>
+                    <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
                       <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full text-base py-5">
                         {language === "en" ? "Schedule Consultation" : "預約諮詢"}
                       </Button>

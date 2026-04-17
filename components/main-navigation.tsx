@@ -11,7 +11,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
-import { BookOpen, Newspaper, Video, Download, ShieldPlus, HandCoins, Wallet, Users, GraduationCap } from "lucide-react"
+import { Shield, HandCoins, Star, GraduationCap } from "lucide-react"
 
 export function MainNavigation() {
   const pathname = usePathname()
@@ -24,133 +24,41 @@ export function MainNavigation() {
     <NavigationMenu className="hidden md:flex" viewport={false}>
       <NavigationMenuList className="gap-2">
 
-        {/* Join Our Team */}
-        <NavigationMenuItem>
-          <Link
-            href="/join"
-            className={`text-sm font-medium transition-colors px-4 py-2 inline-flex items-center hover:text-primary ${
-              isActive("/join") ? "text-primary" : "text-muted-foreground"
-            }`}
-          >
-            {language === "en" ? "Join Our Team" : "加入我們"}
-          </Link>
-        </NavigationMenuItem>
-
         {/* About Newgen */}
         <NavigationMenuItem>
-          <NavigationMenuTrigger
-            className={`bg-transparent hover:bg-transparent text-sm font-medium transition-colors ${
-              isActive("/company") ? "text-primary" : "text-muted-foreground hover:text-primary"
+          <Link
+            href="/company/about"
+            className={`text-sm font-medium transition-colors px-4 py-2 inline-flex items-center hover:text-primary ${
+              isActive("/company/about") ? "text-primary" : "text-muted-foreground"
             }`}
           >
             {language === "en" ? "About Newgen" : "關於我們"}
-          </NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[200px] gap-2 p-2">
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/company/team"
-                    className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
-                  >
-                    <div className="flex items-center">
-                      <Users className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium">{language === "en" ? "Our Team" : "成員介紹"}</span>
-                    </div>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/company/why-choose-us"
-                    className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
-                  >
-                    <div className="flex items-center">
-                      <GraduationCap className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium">{language === "en" ? "Training System" : "培訓體系"}</span>
-                    </div>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-            </ul>
-          </NavigationMenuContent>
+          </Link>
         </NavigationMenuItem>
 
-        {/* Resources */}
-        <NavigationMenuItem>
-          <NavigationMenuTrigger
-            className={`bg-transparent hover:bg-transparent text-sm font-medium transition-colors ${
-              isActive("/resources") ? "text-primary" : "text-muted-foreground hover:text-primary"
-            }`}
-          >
-            {language === "en" ? "Resources" : "資源"}
-          </NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[180px] gap-2 p-2">
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/resources/blog"
-                    className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
-                  >
-                    <div className="flex items-center">
-                      <BookOpen className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium">Blog</span>
-                    </div>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/resources/webinars"
-                    className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
-                  >
-                    <div className="flex items-center">
-                      <Video className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium">Webinars</span>
-                    </div>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/resources/downloads"
-                    className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
-                  >
-                    <div className="flex items-center">
-                      <Download className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium">Downloads</span>
-                    </div>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-
-        {/* Insurance Solutions */}
+        {/* Insurance */}
         <NavigationMenuItem>
           <NavigationMenuTrigger
             className={`bg-transparent hover:bg-transparent text-sm font-medium transition-colors ${
               isActive("/solutions") ? "text-primary" : "text-muted-foreground hover:text-primary"
             }`}
           >
-            {language === "en" ? "Insurance Solutions" : "保險方案"}
+            {language === "en" ? "Insurance" : "產品介紹"}
           </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[200px] gap-2 p-2">
+            <ul className="grid w-[220px] gap-2 p-2">
               <li>
                 <NavigationMenuLink asChild>
                   <Link
-                    href="/solutions/tax-free-retirement"
-                    className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
+                    href="/solutions/life-insurance"
+                    className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
                   >
-                    <div className="flex items-center">
-                      <Wallet className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium">IUL</span>
+                    <div className="flex items-center gap-2">
+                      <Shield className="h-4 w-4 text-primary" />
+                      <div>
+                        <div className="text-sm font-medium">Life Insurance</div>
+                        <div className="text-xs text-muted-foreground mt-0.5">{language === "en" ? "Protection + Living Benefits" : "保障 + 生前福利"}</div>
+                      </div>
                     </div>
                   </Link>
                 </NavigationMenuLink>
@@ -159,11 +67,45 @@ export function MainNavigation() {
                 <NavigationMenuLink asChild>
                   <Link
                     href="/solutions/guaranteed-income"
-                    className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
+                    className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
                   >
-                    <div className="flex items-center">
-                      <HandCoins className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium">{language === "en" ? "Annuity" : "年金"}</span>
+                    <div className="flex items-center gap-2">
+                      <HandCoins className="h-4 w-4 text-primary" />
+                      <div>
+                        <div className="text-sm font-medium">{language === "en" ? "Annuity" : "年金"}</div>
+                        <div className="text-xs text-muted-foreground mt-0.5">{language === "en" ? "Guaranteed Retirement Income" : "保證退休收入"}</div>
+                      </div>
+                    </div>
+                  </Link>
+                </NavigationMenuLink>
+              </li>
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+        {/* Join */}
+        <NavigationMenuItem>
+          <NavigationMenuTrigger
+            className={`bg-transparent hover:bg-transparent text-sm font-medium transition-colors ${
+              isActive("/join") ? "text-primary" : "text-muted-foreground hover:text-primary"
+            }`}
+          >
+            {language === "en" ? "Join Us" : "加入我們"}
+          </NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[220px] gap-2 p-2">
+              <li>
+                <NavigationMenuLink asChild>
+                  <Link
+                    href="/join/why-newgen"
+                    className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Star className="h-4 w-4 text-primary" />
+                      <div>
+                        <div className="text-sm font-medium">{language === "en" ? "Why NewGen" : "為什麼選擇我們"}</div>
+                        <div className="text-xs text-muted-foreground mt-0.5">{language === "en" ? "Advantages & income model" : "優勢與收入模式"}</div>
+                      </div>
                     </div>
                   </Link>
                 </NavigationMenuLink>
@@ -171,12 +113,15 @@ export function MainNavigation() {
               <li>
                 <NavigationMenuLink asChild>
                   <Link
-                    href="/solutions/life-insurance"
-                    className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
+                    href="/join/training"
+                    className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
                   >
-                    <div className="flex items-center">
-                      <ShieldPlus className="mr-2 h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-medium">Term</span>
+                    <div className="flex items-center gap-2">
+                      <GraduationCap className="h-4 w-4 text-primary" />
+                      <div>
+                        <div className="text-sm font-medium">{language === "en" ? "Training System" : "培訓體系"}</div>
+                        <div className="text-xs text-muted-foreground mt-0.5">{language === "en" ? "How we develop agents" : "我們如何培育顧問"}</div>
+                      </div>
                     </div>
                   </Link>
                 </NavigationMenuLink>

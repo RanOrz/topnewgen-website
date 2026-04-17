@@ -333,7 +333,7 @@ export const translations = {
     },
     // Footer
     footer: {
-      tagline: "Protecting your beloved family with innovative life insurance solutions",
+      tagline: "Insurance solutions for your family. Career opportunities for your future.",
       quickLinks: "Quick Links",
       legal: "Legal",
       contactUs: "Contact Us",
@@ -860,7 +860,7 @@ export const translations = {
     },
     // Footer
     footer: {
-      tagline: "用創新壽險方案守護您最重要的家人",
+      tagline: "為您的家人提供保障，為您的未來創造機會。",
       quickLinks: "快速鏈接",
       legal: "法律信息",
       contactUs: "聯繫我們",

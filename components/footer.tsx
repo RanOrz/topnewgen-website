@@ -2,18 +2,19 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Mail, MapPin, Phone, Facebook, Linkedin, Youtube } from "lucide-react"
+import { Mail, MapPin, Phone } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 
 export function Footer() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
 
   const quickLinks = [
-    { label: t.footer.home, href: "/" },
-    { label: t.footer.solutions, href: "/solutions" },
-    { label: t.footer.resources, href: "/resources" },
-    { label: t.footer.aboutUs, href: "/about" },
-    { label: t.footer.contactUs, href: "/contact" },
+    { label: language === "en" ? "About NewGen" : "關於我們", href: "/company/about" },
+    { label: language === "en" ? "Life Insurance" : "人壽保險", href: "/solutions/life-insurance" },
+    { label: language === "en" ? "Annuity" : "年金", href: "/solutions/guaranteed-income" },
+    { label: language === "en" ? "Why NewGen" : "為什麼選擇我們", href: "/join/why-newgen" },
+    { label: language === "en" ? "Training System" : "培訓體系", href: "/join/training" },
+    { label: language === "en" ? "Contact Us" : "聯絡我們", href: "/contact" },
   ]
 
   const legalLinks = [
@@ -39,22 +40,6 @@ export function Footer() {
               />
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed mb-4">{t.footer.tagline}</p>
-            <div className="flex items-center gap-3">
-              <Link href="#" className="text-muted-foreground hover:text-info">
-                <Youtube className="w-5 h-5" />
-              </Link>
-              <Link href="#" className="text-muted-foreground hover:text-info">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-              </Link>
-              <Link href="#" className="text-muted-foreground hover:text-info">
-                <Linkedin className="w-5 h-5" />
-              </Link>
-              <Link href="#" className="text-muted-foreground hover:text-info">
-                <Facebook className="w-5 h-5" />
-              </Link>
-            </div>
           </div>
 
           {/* Quick Links */}
@@ -95,7 +80,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-3 text-sm text-muted-foreground">
                 <Mail className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <span>info@topnewgen.com</span>
+                <span>marketing@topnewgen.com</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-muted-foreground">
                 <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />

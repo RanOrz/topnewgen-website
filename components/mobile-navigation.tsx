@@ -3,186 +3,84 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useLanguage } from "@/contexts/language-context"
-import { translations } from "@/lib/translations"
 import { cn } from "@/lib/utils"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 export function MobileNavigation() {
   const pathname = usePathname()
   const { language } = useLanguage()
-  const t = translations[language]
 
   return (
-    <div className="flex flex-col gap-2 py-2">
+    <div className="flex flex-col gap-1 py-2">
+
       <Link
-        href="/"
+        href="/company/about"
         className={cn(
-          "text-base font-medium transition-colors hover:text-primary px-2 py-3",
-          pathname === "/" ? "text-primary" : "text-foreground",
+          "text-base font-medium transition-colors px-2 py-3 rounded-xl",
+          pathname === "/company/about" ? "text-primary bg-accent/10" : "text-foreground hover:text-primary"
         )}
       >
-        {t.nav.home}
+        {language === "en" ? "About Newgen" : "關於我們"}
       </Link>
 
       <Accordion type="single" collapsible className="w-full">
-        <AccordionItem value="solutions">
-          <AccordionTrigger className="text-base font-medium px-2">{t.nav.solutions}</AccordionTrigger>
+
+        <AccordionItem value="insurance" className="border-none">
+          <AccordionTrigger className="text-base font-medium px-2 py-3 hover:no-underline">
+            {language === "en" ? "Insurance" : "產品介紹"}
+          </AccordionTrigger>
           <AccordionContent>
-            <div className="flex flex-col gap-3 pl-4">
-              <Link
-                href="/solutions"
-                className={cn(
-                  "text-sm transition-colors hover:text-primary",
-                  pathname === "/solutions" ? "text-primary" : "text-muted-foreground",
-                )}
-              >
-                {t.solutions.overview}
-              </Link>
+            <div className="flex flex-col gap-1 pl-4 pb-2">
               <Link
                 href="/solutions/life-insurance"
                 className={cn(
-                  "text-sm transition-colors hover:text-primary",
-                  pathname === "/solutions/life-insurance" ? "text-primary" : "text-muted-foreground",
+                  "text-sm font-medium transition-colors px-2 py-2.5 rounded-lg",
+                  pathname === "/solutions/life-insurance" ? "text-primary bg-accent/10" : "text-muted-foreground hover:text-primary"
                 )}
               >
-                {t.solutions.lifeInsurance}
-              </Link>
-              <Link
-                href="/solutions/tax-free-retirement"
-                className={cn(
-                  "text-sm transition-colors hover:text-primary",
-                  pathname === "/solutions/tax-free-retirement" ? "text-primary" : "text-muted-foreground",
-                )}
-              >
-                {t.solutions.taxFreeRetirement}
+                Life Insurance
               </Link>
               <Link
                 href="/solutions/guaranteed-income"
                 className={cn(
-                  "text-sm transition-colors hover:text-primary",
-                  pathname === "/solutions/guaranteed-income" ? "text-primary" : "text-muted-foreground",
+                  "text-sm font-medium transition-colors px-2 py-2.5 rounded-lg",
+                  pathname === "/solutions/guaranteed-income" ? "text-primary bg-accent/10" : "text-muted-foreground hover:text-primary"
                 )}
               >
-                {t.solutions.annuity}
-              </Link>
-              <Link
-                href="/solutions/long-term-care"
-                className={cn(
-                  "text-sm transition-colors hover:text-primary",
-                  pathname === "/solutions/long-term-care" ? "text-primary" : "text-muted-foreground",
-                )}
-              >
-                {t.solutions.longTermCare}
-              </Link>
-              <Link
-                href="/solutions/estate-planning"
-                className={cn(
-                  "text-sm transition-colors hover:text-primary",
-                  pathname === "/solutions/estate-planning" ? "text-primary" : "text-muted-foreground",
-                )}
-              >
-                {t.solutions.estatePlanning}
+                {language === "en" ? "Annuity" : "年金"}
               </Link>
             </div>
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="resources">
-          <AccordionTrigger className="text-base font-medium px-2">{t.nav.resources}</AccordionTrigger>
+        <AccordionItem value="training" className="border-none">
+          <AccordionTrigger className="text-base font-medium px-2 py-3 hover:no-underline">
+            {language === "en" ? "Join Us" : "加入我們"}
+          </AccordionTrigger>
           <AccordionContent>
-            <div className="flex flex-col gap-3 pl-4">
+            <div className="flex flex-col gap-1 pl-4 pb-2">
               <Link
-                href="/resources/blog"
+                href="/join/why-newgen"
                 className={cn(
-                  "text-sm transition-colors hover:text-primary",
-                  pathname === "/resources/blog" ? "text-primary" : "text-muted-foreground",
+                  "text-sm font-medium transition-colors px-2 py-2.5 rounded-lg",
+                  pathname === "/join/why-newgen" ? "text-primary bg-accent/10" : "text-muted-foreground hover:text-primary"
                 )}
               >
-                {t.resources.blog}
+                {language === "en" ? "Why NewGen" : "為什麼選擇我們"}
               </Link>
               <Link
-                href="/resources/news"
+                href="/join/training"
                 className={cn(
-                  "text-sm transition-colors hover:text-primary",
-                  pathname === "/resources/news" ? "text-primary" : "text-muted-foreground",
+                  "text-sm font-medium transition-colors px-2 py-2.5 rounded-lg",
+                  pathname === "/join/training" ? "text-primary bg-accent/10" : "text-muted-foreground hover:text-primary"
                 )}
               >
-                {t.resources.news}
-              </Link>
-              <Link
-                href="/resources/calculators"
-                className={cn(
-                  "text-sm transition-colors hover:text-primary",
-                  pathname === "/resources/calculators" ? "text-primary" : "text-muted-foreground",
-                )}
-              >
-                {t.resources.calculators}
-              </Link>
-              <Link
-                href="/resources/webinars"
-                className={cn(
-                  "text-sm transition-colors hover:text-primary",
-                  pathname === "/resources/webinars" ? "text-primary" : "text-muted-foreground",
-                )}
-              >
-                {t.resources.webinars}
-              </Link>
-              <Link
-                href="/resources/downloads"
-                className={cn(
-                  "text-sm transition-colors hover:text-primary",
-                  pathname === "/resources/downloads" ? "text-primary" : "text-muted-foreground",
-                )}
-              >
-                {t.resources.downloads}
+                {language === "en" ? "Training System" : "培訓體系"}
               </Link>
             </div>
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="company">
-          <AccordionTrigger className="text-base font-medium px-2">{t.nav.company}</AccordionTrigger>
-          <AccordionContent>
-            <div className="flex flex-col gap-3 pl-4">
-              <Link
-                href="/company/about"
-                className={cn(
-                  "text-sm transition-colors hover:text-primary",
-                  pathname === "/company/about" ? "text-primary" : "text-muted-foreground",
-                )}
-              >
-                {t.company.about}
-              </Link>
-              <Link
-                href="/company/team"
-                className={cn(
-                  "text-sm transition-colors hover:text-primary",
-                  pathname === "/company/team" ? "text-primary" : "text-muted-foreground",
-                )}
-              >
-                {t.company.team}
-              </Link>
-              <Link
-                href="/company/careers"
-                className={cn(
-                  "text-sm transition-colors hover:text-primary",
-                  pathname === "/company/careers" ? "text-primary" : "text-muted-foreground",
-                )}
-              >
-                {t.company.careers}
-              </Link>
-              <Link
-                href="/join"
-                className={cn(
-                  "text-sm transition-colors hover:text-primary",
-                  pathname === "/join" ? "text-primary" : "text-muted-foreground",
-                )}
-              >
-                {t.company.joinUs}
-              </Link>
-            </div>
-          </AccordionContent>
-        </AccordionItem>
       </Accordion>
     </div>
   )

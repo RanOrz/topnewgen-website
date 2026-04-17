@@ -384,7 +384,7 @@ export function GuaranteedIncomeContent() {
           <p className="text-lg text-accent-foreground/80 mb-8 max-w-2xl mx-auto">
             {t.ctaDesc}
           </p>
-          <Link href="/company/contact">
+          <Link href="/contact">
             <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-10 py-6 text-lg rounded-full">
               {t.ctaButton}
             </Button>

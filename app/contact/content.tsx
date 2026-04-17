@@ -3,358 +3,286 @@
 import { useLanguage } from "@/contexts/language-context"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Phone, Mail, MapPin, Clock, CalendarDays, MessageSquare } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Phone, Mail, MapPin, Clock, ArrowRight, CheckCircle, Shield, Users } from "lucide-react"
+import { useState } from "react"
 
-const contactIconMap = [Phone, Mail, MapPin, Clock]
-
-const copy = {
-  en: {
-    heroEyebrow: "Here for You Anytime",
-    heroHeading: "Contact NewGen Insurance Agency",
-    heroSubtext:
-      "Whether you have questions about insurance or want to learn about protection plans suited to your family, our professional advisory team is always ready to provide free, no-pressure consultations.",
-    contactInfo: [
-      {
-        title: "Phone",
-        lines: ["(650) 755-1668"],
-        action: { label: "Call Now", href: "tel:+16507551668" },
-      },
-      {
-        title: "Email",
-        lines: ["info@topnewgen.com"],
-        action: { label: "Send Email", href: "mailto:info@topnewgen.com" },
-      },
-      {
-        title: "Office Address",
-        lines: ["851 Burlway Rd Room 608", "Burlingame, CA 94010"],
-        action: {
-          label: "View Map",
-          href: "https://maps.google.com/?q=851+Burlway+Rd+Room+608+Burlingame+CA+94010",
-        },
-      },
-      {
-        title: "Office Hours",
-        lines: ["Monday – Friday", "9:00 AM — 6:00 PM PST"],
-        action: null,
-      },
-    ],
-    formEyebrow: "Send a Message",
-    formHeading: "Tell Us What You Need",
-    formSubtext:
-      "Fill out the form below and we will get back to you within one business day to arrange a free protection consultation.",
-    labelName: "Name",
-    labelPhone: "Phone Number",
-    labelEmail: "Email",
-    labelTopic: "Consultation Topic",
-    labelMessage: "Message",
-    placeholderName: "Your name",
-    placeholderMessage: "Tell us about your needs or questions and we will get back to you with expert advice as soon as possible...",
-    topicPlaceholder: "Select a consultation topic",
-    topicOptions: [
-      { value: "life-insurance", label: "Life Insurance Planning" },
-      { value: "retirement", label: "Retirement Planning" },
-      { value: "tax-free", label: "Tax-Free Cash Value Planning" },
-      { value: "college", label: "Education Fund Planning" },
-      { value: "ltc", label: "Long-Term Care Insurance" },
-      { value: "estate", label: "Estate Planning" },
-      { value: "other", label: "Other Questions" },
-    ],
-    consentText: "I agree that NewGen Insurance Agency may collect and use the personal information I provide in accordance with its",
-    consentPrivacyLink: "Privacy Policy",
-    consentSuffix: "to contact me and provide insurance-related services.",
-    submitBtn: "Send Message",
-    scheduleHeading: "Book a Consultation Directly",
-    scheduleSubtext:
-      "Don't want to wait? Use our online booking system now to choose a time that works for you and have a one-on-one video or phone consultation with an advisor.",
-    scheduleBtn: "Go to Online Booking",
-    officeHoursHeading: "Office Hours",
-    officeHours: [
-      { day: "Monday", hours: "9:00 AM – 6:00 PM PST" },
-      { day: "Tuesday", hours: "9:00 AM – 6:00 PM PST" },
-      { day: "Wednesday", hours: "9:00 AM – 6:00 PM PST" },
-      { day: "Thursday", hours: "9:00 AM – 6:00 PM PST" },
-      { day: "Friday", hours: "9:00 AM – 6:00 PM PST" },
-      { day: "Saturday", hours: "By appointment if needed" },
-      { day: "Sunday", hours: "Closed" },
-    ],
-    officeLocationHeading: "Office Location",
-    officeCompanyName: "NewGen Insurance Agency",
-    viewOnMaps: "View on Google Maps",
-    quickContactHeading: "Quick Contact",
-  },
-  zh: {
-    heroEyebrow: "隨時為您服務",
-    heroHeading: "聯繫新睿保險集團",
-    heroSubtext:
-      "無論您有任何保險問題，或是想了解適合您家庭的保障方案，我們的專業顧問團隊隨時準備好為您提供免費、無壓力的諮詢服務。",
-    contactInfo: [
-      {
-        title: "電話",
-        lines: ["(650) 755-1668"],
-        action: { label: "立即致電", href: "tel:+16507551668" },
-      },
-      {
-        title: "電子郵件",
-        lines: ["info@topnewgen.com"],
-        action: { label: "發送郵件", href: "mailto:info@topnewgen.com" },
-      },
-      {
-        title: "辦公地址",
-        lines: ["851 Burlway Rd Room 608", "Burlingame, CA 94010"],
-        action: {
-          label: "查看地圖",
-          href: "https://maps.google.com/?q=851+Burlway+Rd+Room+608+Burlingame+CA+94010",
-        },
-      },
-      {
-        title: "辦公時間",
-        lines: ["週一至週五", "上午9:00 — 下午6:00 PST"],
-        action: null,
-      },
-    ],
-    formEyebrow: "發送訊息",
-    formHeading: "告訴我們您的需求",
-    formSubtext:
-      "填寫以下表單，我們將在一個工作日內與您聯繫，為您安排免費的保障諮詢。",
-    labelName: "姓名",
-    labelPhone: "電話號碼",
-    labelEmail: "電子郵件",
-    labelTopic: "諮詢主題",
-    labelMessage: "訊息內容",
-    placeholderName: "您的姓名",
-    placeholderMessage: "請告訴我們您的需求或問題，我們將盡快為您提供專業的回覆...",
-    topicPlaceholder: "請選擇諮詢主題",
-    topicOptions: [
-      { value: "life-insurance", label: "人壽保險規劃" },
-      { value: "retirement", label: "退休金規劃" },
-      { value: "tax-free", label: "免稅現金值規劃" },
-      { value: "college", label: "教育基金規劃" },
-      { value: "ltc", label: "長期護理保險" },
-      { value: "estate", label: "遺產規劃" },
-      { value: "other", label: "其他問題" },
-    ],
-    consentText: "我同意新睿保險集團根據其",
-    consentPrivacyLink: "隱私政策",
-    consentSuffix: "收集並使用我提供的個人資料，以便聯繫我並提供保險相關服務。",
-    submitBtn: "發送訊息",
-    scheduleHeading: "直接預約諮詢",
-    scheduleSubtext:
-      "不想等待？立即透過我們的線上預約系統，選擇您方便的時間，與顧問進行一對一視訊或電話諮詢。",
-    scheduleBtn: "前往線上預約系統",
-    officeHoursHeading: "辦公時間",
-    officeHours: [
-      { day: "週一", hours: "9:00 AM – 6:00 PM PST" },
-      { day: "週二", hours: "9:00 AM – 6:00 PM PST" },
-      { day: "週三", hours: "9:00 AM – 6:00 PM PST" },
-      { day: "週四", hours: "9:00 AM – 6:00 PM PST" },
-      { day: "週五", hours: "9:00 AM – 6:00 PM PST" },
-      { day: "週六", hours: "如有需要，可預約安排" },
-      { day: "週日", hours: "休息" },
-    ],
-    officeLocationHeading: "辦公室位置",
-    officeCompanyName: "新睿保險集團",
-    viewOnMaps: "在 Google Maps 上查看",
-    quickContactHeading: "立即聯繫",
-  },
-}
+const SHEETS_URL =
+  "https://script.google.com/macros/s/AKfycbx6ekusan9wCBnjkJOt10oUS7ch1nuK97MlQticsNdmq2AZc9xXLkLoHiCllqlAjJIt/exec"
 
 export function ContactContent() {
   const { language } = useLanguage()
-  const t = copy[language]
+  const [intent, setIntent] = useState<"client" | "agent" | "">("")
+  const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [errors, setErrors] = useState<Record<string, string>>({})
+
+  function validate(name: string, phone: string, email: string) {
+    const errs: Record<string, string> = {}
+    if (!intent) errs.intent = language === "en" ? "Please select an option." : "請選擇一個選項。"
+    if (name.trim().length < 2) errs.name = language === "en" ? "Please enter your full name." : "請輸入您的姓名。"
+    if (!phone.trim() || !/^\+?[\d\s\-().]{7,15}$/.test(phone.trim())) errs.phone = language === "en" ? "Please enter a valid phone number." : "請輸入有效的電話號碼。"
+    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) errs.email = language === "en" ? "Please enter a valid email address." : "請輸入有效的電子郵件地址。"
+    return errs
+  }
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const form = e.currentTarget
+    const name = (form.elements.namedItem("name") as HTMLInputElement).value
+    const email = (form.elements.namedItem("email") as HTMLInputElement).value
+    const phone = (form.elements.namedItem("phone") as HTMLInputElement).value
+
+    const errs = validate(name, phone, email)
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs)
+      return
+    }
+    setErrors({})
+    setSubmitting(true)
+    try {
+      await fetch(SHEETS_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: intent, name, email, phone }),
+      })
+    } catch (_) {}
+    setSubmitting(false)
+    setSubmitted(true)
+  }
+
+  const officeHours = language === "en"
+    ? [
+        { day: "Monday", hours: "9:00 AM – 6:00 PM PST" },
+        { day: "Tuesday", hours: "9:00 AM – 6:00 PM PST" },
+        { day: "Wednesday", hours: "9:00 AM – 6:00 PM PST" },
+        { day: "Thursday", hours: "9:00 AM – 6:00 PM PST" },
+        { day: "Friday", hours: "9:00 AM – 6:00 PM PST" },
+        { day: "Saturday", hours: "By appointment" },
+        { day: "Sunday", hours: "Closed" },
+      ]
+    : [
+        { day: "週一", hours: "9:00 AM – 6:00 PM PST" },
+        { day: "週二", hours: "9:00 AM – 6:00 PM PST" },
+        { day: "週三", hours: "9:00 AM – 6:00 PM PST" },
+        { day: "週四", hours: "9:00 AM – 6:00 PM PST" },
+        { day: "週五", hours: "9:00 AM – 6:00 PM PST" },
+        { day: "週六", hours: "預約制" },
+        { day: "週日", hours: "休息" },
+      ]
 
   return (
     <main className="min-h-screen">
       <Header />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-primary via-primary/90 to-primary">
+      {/* Hero */}
+      <section className="pt-36 pb-16 bg-gradient-to-br from-primary via-primary/90 to-primary/80">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <p className="text-accent font-semibold text-sm uppercase tracking-widest mb-4">{t.heroEyebrow}</p>
-            <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6 leading-tight">
-              {t.heroHeading}
+          <div className="max-w-2xl">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-5">
+              {language === "en" ? "Contact Us" : "聯絡我們"}
             </h1>
-            <p className="text-xl text-primary-foreground/80 max-w-3xl leading-relaxed">
-              {t.heroSubtext}
+            <p className="text-xl text-white/80 leading-relaxed">
+              {language === "en"
+                ? "Whether you're exploring insurance options or interested in joining our team — we're here to help. Reach out and we'll get back to you within 1 business day."
+                : "無論您是想了解保險方案，還是有意加入我們的團隊，我們都在這裡為您服務。聯繫我們，我們將在1個工作日內回覆您。"}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Contact Info Cards */}
-      <section className="py-16 bg-secondary">
+      {/* Quick contact cards */}
+      <section className="py-10 bg-secondary border-b border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {t.contactInfo.map((item, index) => {
-              const Icon = contactIconMap[index]
-              return (
-                <div
-                  key={item.title}
-                  className="bg-background rounded-2xl p-6 border border-border text-center hover:border-primary/30 transition-colors"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="font-bold text-primary mb-3">{item.title}</h3>
-                  <div className="space-y-1 mb-4">
-                    {item.lines.map((line, i) => (
-                      <p key={i} className="text-muted-foreground text-sm">
-                        {line}
-                      </p>
-                    ))}
-                  </div>
-                  {item.action && (
-                    <a
-                      href={item.action.href}
-                      target={item.action.href.startsWith("http") ? "_blank" : undefined}
-                      rel={item.action.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="inline-flex items-center justify-center text-sm font-semibold text-primary hover:text-info transition-colors underline-offset-2 hover:underline"
-                    >
-                      {item.action.label}
-                    </a>
-                  )}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              {
+                icon: Phone,
+                label: language === "en" ? "Phone" : "電話",
+                value: "(650) 755-1668",
+                href: "tel:+16507551668",
+                cta: language === "en" ? "Call Now" : "立即致電",
+              },
+              {
+                icon: Mail,
+                label: language === "en" ? "Email" : "電子郵件",
+                value: "marketing@topnewgen.com",
+                href: "mailto:marketing@topnewgen.com",
+                cta: language === "en" ? "Send Email" : "發送郵件",
+              },
+              {
+                icon: MapPin,
+                label: language === "en" ? "Office" : "辦公室",
+                value: "851 Burlway Rd Rm 608\nBurlingame, CA 94010",
+                href: "https://maps.google.com/?q=851+Burlway+Rd+Room+608+Burlingame+CA+94010",
+                cta: language === "en" ? "View Map" : "查看地圖",
+              },
+              {
+                icon: Clock,
+                label: language === "en" ? "Hours" : "辦公時間",
+                value: language === "en" ? "Mon–Fri\n9:00 AM – 6:00 PM PST" : "週一至週五\n9:00 AM – 6:00 PM PST",
+                href: null,
+                cta: null,
+              },
+            ].map(({ icon: Icon, label, value, href, cta }) => (
+              <div key={label} className="bg-background rounded-2xl p-6 border border-border text-center">
+                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                  <Icon className="w-5 h-5 text-primary" />
                 </div>
-              )
-            })}
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">{label}</p>
+                <p className="text-sm text-foreground font-medium leading-snug whitespace-pre-line mb-3">{value}</p>
+                {href && cta && (
+                  <a
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="text-xs font-semibold text-primary hover:underline"
+                  >
+                    {cta} →
+                  </a>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Main Content: Form + Details */}
+      {/* Main: Form + Sidebar */}
       <section className="py-20 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
-            {/* Contact Form */}
+
+            {/* Form */}
             <div className="lg:col-span-3">
-              <p className="text-info font-semibold text-sm uppercase tracking-widest mb-3">{t.formEyebrow}</p>
-              <h2 className="text-3xl font-bold text-primary mb-2">{t.formHeading}</h2>
+              <h2 className="text-3xl font-bold text-primary mb-2">
+                {language === "en" ? "Send Us a Message" : "發送訊息給我們"}
+              </h2>
               <p className="text-muted-foreground mb-8">
-                {t.formSubtext}
+                {language === "en"
+                  ? "Fill in the form and we'll get back to you within 1 business day."
+                  : "填寫表單，我們將在1個工作日內回覆您。"}
               </p>
-              <form className="space-y-5" action="mailto:info@topnewgen.com" method="post">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">
-                      {t.labelName} <span className="text-destructive">*</span>
+
+              {submitted ? (
+                <div className="bg-secondary/50 rounded-2xl p-16 text-center border border-border">
+                  <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-6" />
+                  <h3 className="text-2xl font-bold text-primary mb-3">
+                    {language === "en" ? "Thank you!" : "謝謝您！"}
+                  </h3>
+                  <p className="text-muted-foreground text-lg">
+                    {language === "en" ? "We'll be in touch within 1 business day." : "我們將在1個工作日內與您聯繫。"}
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+
+                  {/* Intent toggle */}
+                  <div className="flex flex-col gap-3">
+                    <label className="text-sm font-semibold text-primary">
+                      {language === "en" ? "I'm here because... *" : "我想要... *"}
+                    </label>
+                    <div className="grid grid-cols-2 gap-4">
+                      <button
+                        type="button"
+                        onClick={() => { setIntent("client"); setErrors(p => ({ ...p, intent: "" })) }}
+                        className={`flex flex-col items-center gap-3 p-5 rounded-2xl border-2 transition-all duration-200 ${
+                          intent === "client"
+                            ? "border-primary bg-primary/5 text-primary"
+                            : errors.intent ? "border-destructive text-muted-foreground" : "border-border text-muted-foreground hover:border-primary/40"
+                        }`}
+                      >
+                        <Shield className={`w-7 h-7 ${intent === "client" ? "text-primary" : "text-muted-foreground"}`} />
+                        <span className="text-sm font-semibold text-center leading-snug">
+                          {language === "en" ? "I'm interested in insurance" : "我想了解保險服務"}
+                        </span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => { setIntent("agent"); setErrors(p => ({ ...p, intent: "" })) }}
+                        className={`flex flex-col items-center gap-3 p-5 rounded-2xl border-2 transition-all duration-200 ${
+                          intent === "agent"
+                            ? "border-primary bg-primary/5 text-primary"
+                            : errors.intent ? "border-destructive text-muted-foreground" : "border-border text-muted-foreground hover:border-primary/40"
+                        }`}
+                      >
+                        <Users className={`w-7 h-7 ${intent === "agent" ? "text-primary" : "text-muted-foreground"}`} />
+                        <span className="text-sm font-semibold text-center leading-snug">
+                          {language === "en" ? "I want to join the team" : "我想加入團隊"}
+                        </span>
+                      </button>
+                    </div>
+                    {errors.intent && <p className="text-xs text-destructive mt-1">{errors.intent}</p>}
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-sm font-semibold text-primary">
+                        {language === "en" ? "Name *" : "姓名 *"}
+                      </label>
+                      <input
+                        name="name" type="text"
+                        placeholder={language === "en" ? "Your full name" : "您的姓名"}
+                        className={`border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 bg-secondary/40 ${errors.name ? "border-destructive" : "border-border"}`}
+                      />
+                      {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-sm font-semibold text-primary">
+                        {language === "en" ? "Phone *" : "電話 *"}
+                      </label>
+                      <input
+                        name="phone" type="tel"
+                        placeholder="(XXX) XXX-XXXX"
+                        className={`border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 bg-secondary/40 ${errors.phone ? "border-destructive" : "border-border"}`}
+                      />
+                      {errors.phone && <p className="text-xs text-destructive">{errors.phone}</p>}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-2">
+                    <label className="text-sm font-semibold text-primary">
+                      {language === "en" ? "Email *" : "電子郵件 *"}
                     </label>
                     <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      placeholder={t.placeholderName}
-                      className="w-full rounded-xl border border-border bg-secondary px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors text-sm"
+                      name="email" type="email"
+                      placeholder="your@email.com"
+                      className={`border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 bg-secondary/40 ${errors.email ? "border-destructive" : "border-border"}`}
                     />
+                    {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
                   </div>
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-semibold text-foreground mb-2">
-                      {t.labelPhone}
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      placeholder="(XXX) XXX-XXXX"
-                      className="w-full rounded-xl border border-border bg-secondary px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors text-sm"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-2">
-                    {t.labelEmail} <span className="text-destructive">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    placeholder="your@email.com"
-                    className="w-full rounded-xl border border-border bg-secondary px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors text-sm"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="topic" className="block text-sm font-semibold text-foreground mb-2">
-                    {t.labelTopic}
-                  </label>
-                  <select
-                    id="topic"
-                    name="topic"
-                    className="w-full rounded-xl border border-border bg-secondary px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors text-sm"
+
+                  <Button
+                    type="submit"
+                    size="lg"
+                    disabled={submitting}
+                    className="w-full bg-primary hover:bg-primary/90 text-white font-bold text-lg py-6 rounded-full disabled:opacity-50"
                   >
-                    <option value="">{t.topicPlaceholder}</option>
-                    {t.topicOptions.map((opt) => (
-                      <option key={opt.value} value={opt.value}>{opt.label}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-semibold text-foreground mb-2">
-                    {t.labelMessage} <span className="text-destructive">*</span>
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={5}
-                    placeholder={t.placeholderMessage}
-                    className="w-full rounded-xl border border-border bg-secondary px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors text-sm resize-none"
-                  />
-                </div>
-                <div className="flex items-start gap-3">
-                  <input
-                    type="checkbox"
-                    id="consent"
-                    name="consent"
-                    required
-                    className="mt-1 w-4 h-4 rounded border-border text-primary focus:ring-primary/30"
-                  />
-                  <label htmlFor="consent" className="text-xs text-muted-foreground leading-relaxed">
-                    {t.consentText}
-                    <a href="/privacy" className="text-info hover:underline mx-1">{t.consentPrivacyLink}</a>
-                    {t.consentSuffix}
-                  </label>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-4 rounded-full transition-colors text-lg"
-                >
-                  {t.submitBtn}
-                </button>
-              </form>
+                    {submitting
+                      ? (language === "en" ? "Submitting..." : "提交中...")
+                      : (language === "en" ? "Send Message" : "發送訊息")}
+                    {!submitting && <ArrowRight className="ml-2 h-5 w-5" />}
+                  </Button>
+                </form>
+              )}
             </div>
 
-            {/* Right Side Details */}
-            <div className="lg:col-span-2 space-y-8">
-              {/* Schedule Appointment */}
-              <div className="bg-primary rounded-2xl p-7 text-primary-foreground">
-                <div className="flex items-center gap-3 mb-4">
-                  <CalendarDays className="w-6 h-6 text-accent" />
-                  <h3 className="font-bold text-lg">{t.scheduleHeading}</h3>
-                </div>
-                <p className="text-primary-foreground/80 text-sm leading-relaxed mb-5">
-                  {t.scheduleSubtext}
-                </p>
-                <a
-                  href="https://app.topnewgen.com/login"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-6 py-3 rounded-full transition-colors text-sm"
-                >
-                  {t.scheduleBtn}
-                </a>
-              </div>
+            {/* Sidebar */}
+            <div className="lg:col-span-2 space-y-6">
 
-              {/* Office Hours */}
+              {/* Office hours */}
               <div className="bg-secondary rounded-2xl p-7 border border-border">
-                <div className="flex items-center gap-3 mb-4">
-                  <Clock className="w-6 h-6 text-primary" />
-                  <h3 className="font-bold text-primary text-lg">{t.officeHoursHeading}</h3>
+                <div className="flex items-center gap-3 mb-5">
+                  <Clock className="w-5 h-5 text-primary" />
+                  <h3 className="font-bold text-primary text-lg">
+                    {language === "en" ? "Office Hours" : "辦公時間"}
+                  </h3>
                 </div>
-                <div className="space-y-3 text-sm">
-                  {t.officeHours.map((item) => (
-                    <div key={item.day} className="flex justify-between">
-                      <span className="font-semibold text-foreground">{item.day}</span>
-                      <span className="text-muted-foreground">{item.hours}</span>
+                <div className="space-y-2.5">
+                  {officeHours.map(({ day, hours }) => (
+                    <div key={day} className="flex justify-between text-sm">
+                      <span className="font-semibold text-foreground">{day}</span>
+                      <span className="text-muted-foreground">{hours}</span>
                     </div>
                   ))}
                 </div>
@@ -363,46 +291,45 @@ export function ContactContent() {
               {/* Address */}
               <div className="bg-secondary rounded-2xl p-7 border border-border">
                 <div className="flex items-center gap-3 mb-4">
-                  <MapPin className="w-6 h-6 text-primary" />
-                  <h3 className="font-bold text-primary text-lg">{t.officeLocationHeading}</h3>
+                  <MapPin className="w-5 h-5 text-primary" />
+                  <h3 className="font-bold text-primary text-lg">
+                    {language === "en" ? "Our Office" : "辦公室位置"}
+                  </h3>
                 </div>
-                <p className="text-foreground font-semibold mb-1">{t.officeCompanyName}</p>
+                <p className="font-semibold text-foreground mb-1">NewGen Insurance Agency</p>
                 <p className="text-muted-foreground text-sm mb-1">851 Burlway Rd Room 608</p>
                 <p className="text-muted-foreground text-sm mb-4">Burlingame, CA 94010</p>
                 <a
                   href="https://maps.google.com/?q=851+Burlway+Rd+Room+608+Burlingame+CA+94010"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-info transition-colors"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
                 >
                   <MapPin className="w-4 h-4" />
-                  {t.viewOnMaps}
+                  {language === "en" ? "View on Google Maps" : "在 Google Maps 查看"}
                 </a>
               </div>
 
-              {/* Quick Contact */}
+              {/* Quick contact */}
               <div className="bg-secondary rounded-2xl p-7 border border-border">
                 <div className="flex items-center gap-3 mb-4">
-                  <MessageSquare className="w-6 h-6 text-primary" />
-                  <h3 className="font-bold text-primary text-lg">{t.quickContactHeading}</h3>
+                  <Phone className="w-5 h-5 text-primary" />
+                  <h3 className="font-bold text-primary text-lg">
+                    {language === "en" ? "Quick Contact" : "快速聯繫"}
+                  </h3>
                 </div>
                 <div className="space-y-3">
-                  <a
-                    href="tel:+16507551668"
-                    className="flex items-center gap-3 text-sm text-foreground hover:text-info transition-colors"
-                  >
+                  <a href="tel:+16507551668" className="flex items-center gap-3 text-sm text-foreground hover:text-primary transition-colors">
                     <Phone className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>(650) 755-1668</span>
+                    (650) 755-1668
                   </a>
-                  <a
-                    href="mailto:info@topnewgen.com"
-                    className="flex items-center gap-3 text-sm text-foreground hover:text-info transition-colors"
-                  >
+                  <a href="mailto:marketing@topnewgen.com" className="flex items-center gap-3 text-sm text-foreground hover:text-primary transition-colors">
                     <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>info@topnewgen.com</span>
+                    marketing@topnewgen.com
                   </a>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
