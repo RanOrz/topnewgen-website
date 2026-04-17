@@ -71,7 +71,7 @@ export default function RootLayout({
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-59HV4J2X');
+          })(window,document,'script','dataLayer','GTM-P27JXP36');
         `}</Script>
         {/* Clarity */}
         <Script id="clarity-init" strategy="afterInteractive">{`
@@ -82,18 +82,18 @@ export default function RootLayout({
           })(window,document,"clarity","script","wd9uc546no");
         `}</Script>
         {/* GA4 */}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-6NGMCDC0CT" strategy="afterInteractive" />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-5GGL01B9L1" strategy="afterInteractive" />
         <Script id="ga4-init" strategy="afterInteractive">{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-6NGMCDC0CT');
+          gtag('config', 'G-5GGL01B9L1');
         `}</Script>
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         {/* GTM noscript fallback */}
         <noscript>
-          <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59HV4J2X"
+          <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P27JXP36"
             height="0" width="0" style={{display:"none",visibility:"hidden"}} />
         </noscript>
         <LanguageProvider>
