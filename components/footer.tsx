@@ -17,17 +17,10 @@ export function Footer() {
     { label: language === "en" ? "Contact Us" : "聯絡我們", href: "/contact" },
   ]
 
-  const legalLinks = [
-    { label: t.footer.privacyPolicy, href: "/privacy" },
-    { label: t.footer.termsOfUse, href: "/terms" },
-    { label: t.footer.disclaimer, href: "/disclaimer" },
-    { label: t.footer.licensing, href: "/licensing" },
-  ]
-
   return (
     <footer className="bg-secondary border-t border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {/* Brand Column */}
           <div>
             <div className="flex items-center gap-3 mb-4">
@@ -47,20 +40,6 @@ export function Footer() {
             <h3 className="text-primary font-bold mb-4">{t.footer.quickLinks}</h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-muted-foreground hover:text-info text-sm">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Legal Info */}
-          <div>
-            <h3 className="text-primary font-bold mb-4">{t.footer.legal}</h3>
-            <ul className="space-y-3">
-              {legalLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-muted-foreground hover:text-info text-sm">
                     {link.label}

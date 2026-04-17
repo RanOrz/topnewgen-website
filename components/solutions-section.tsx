@@ -2,17 +2,13 @@
 
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Shield, Percent, Stethoscope, GraduationCap, Wallet, FileText } from "lucide-react"
+import { Shield, Percent } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import Link from "next/link"
 
 const solutionMeta = [
   { icon: Shield, href: "/solutions/life-insurance", key: "lifeInsurance" as const },
   { icon: Percent, href: "/solutions/guaranteed-income", key: "annuity" as const },
-  { icon: Stethoscope, href: "/solutions/long-term-care", key: "longTermCare" as const },
-  { icon: GraduationCap, href: "/solutions/college-funding", key: "collegeFunding" as const },
-  { icon: Wallet, href: "/solutions/tax-free-retirement", key: "taxFreeRetirement" as const },
-  { icon: FileText, href: "/solutions/estate-planning", key: "estatePlanning" as const },
 ]
 
 export function SolutionsSection() {
