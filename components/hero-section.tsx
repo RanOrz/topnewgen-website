@@ -97,7 +97,7 @@ export function HeroSection() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl">
 
             {/* Card 1: Consumer */}
-            <Link href="/solutions" className="group">
+            <Link href="/solutions/life-insurance" className="group">
               <div className="bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/40 hover:border-white/60 rounded-2xl p-8 transition-all duration-300 cursor-pointer">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center flex-shrink-0">
@@ -120,7 +120,7 @@ export function HeroSection() {
             </Link>
 
             {/* Card 2: Agent */}
-            <Link href="/join" className="group">
+            <Link href="/join/why-newgen" className="group">
               <div className="bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/40 hover:border-white/60 rounded-2xl p-8 transition-all duration-300 cursor-pointer">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center flex-shrink-0">
