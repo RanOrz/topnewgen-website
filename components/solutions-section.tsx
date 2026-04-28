@@ -34,11 +34,11 @@ export function SolutionsSection() {
         </div>
 
         {/* Solutions Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
           {solutions.map((solution) => {
             const Icon = solution.icon
             return (
-              <Card key={solution.href} className="p-8 bg-card hover:shadow-lg transition-shadow h-full">
+              <Card key={solution.href} className="p-10 bg-card hover:shadow-xl transition-all duration-300 h-full border-0 shadow-md">
                 <div className="flex flex-col items-center text-center h-full justify-between gap-4">
                   <div className="flex flex-col items-center text-center gap-4">
                     <div className="w-16 h-16 rounded-2xl bg-accent flex items-center justify-center">
