@@ -9,12 +9,12 @@ export function Footer() {
   const { t, language } = useLanguage()
 
   const quickLinks = [
-    { label: language === "en" ? "About NewGen" : "關於我們", href: "/company/about" },
+    { label: language === "en" ? "About NewGen" : "關於我們", href: "/" },
     { label: language === "en" ? "Life Insurance" : "人壽保險", href: "/solutions/life-insurance" },
     { label: language === "en" ? "Annuity" : "年金", href: "/solutions/guaranteed-income" },
-    { label: language === "en" ? "Why NewGen" : "為什麼選擇我們", href: "/join/why-newgen" },
-    { label: language === "en" ? "Training System" : "培訓體系", href: "/join/training" },
-    { label: language === "en" ? "Contact Us" : "聯絡我們", href: "/contact" },
+    { label: language === "en" ? "NewGen Community" : "新睿社群", href: "https://member.topnewgen.com/" },
+    { label: language === "en" ? "Agent Dashboard" : "顧問後台", href: "https://app.topnewgen.com/login" },
+    { label: language === "en" ? "Contact Us" : "聯絡我們", href: "/#contact" },
   ]
 
   return (
@@ -41,9 +41,15 @@ export function Footer() {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-muted-foreground hover:text-info text-sm">
-                    {link.label}
-                  </Link>
+                  {link.href.startsWith("http") ? (
+                    <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-info text-sm">
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link href={link.href} className="text-muted-foreground hover:text-info text-sm">
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

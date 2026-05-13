@@ -11,7 +11,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
-import { Shield, HandCoins, Star, GraduationCap } from "lucide-react"
+import { Shield, HandCoins, Users, LayoutDashboard } from "lucide-react"
 
 export function MainNavigation() {
   const pathname = usePathname()
@@ -27,10 +27,8 @@ export function MainNavigation() {
         {/* About Newgen */}
         <NavigationMenuItem>
           <Link
-            href="/company/about"
-            className={`text-sm font-medium transition-colors px-4 py-2 inline-flex items-center hover:text-primary ${
-              isActive("/company/about") ? "text-primary" : "text-muted-foreground"
-            }`}
+            href="/"
+            className="text-sm font-medium transition-colors px-4 py-2 inline-flex items-center hover:text-primary text-muted-foreground"
           >
             {language === "en" ? "About Newgen" : "關於我們"}
           </Link>
@@ -83,47 +81,48 @@ export function MainNavigation() {
           </NavigationMenuContent>
         </NavigationMenuItem>
 
-        {/* Join */}
+
+        {/* Join Us */}
         <NavigationMenuItem>
-          <NavigationMenuTrigger
-            className={`bg-transparent hover:bg-transparent text-sm font-medium transition-colors ${
-              isActive("/join") ? "text-primary" : "text-muted-foreground hover:text-primary"
-            }`}
-          >
+          <NavigationMenuTrigger className="bg-transparent hover:bg-transparent text-sm font-medium transition-colors text-muted-foreground hover:text-primary">
             {language === "en" ? "Join Us" : "加入我們"}
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[220px] gap-2 p-2">
               <li>
                 <NavigationMenuLink asChild>
-                  <Link
-                    href="/join/why-newgen"
+                  <a
+                    href="https://member.topnewgen.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
                   >
                     <div className="flex items-center gap-2">
-                      <Star className="h-4 w-4 text-primary" />
+                      <Users className="h-4 w-4 text-primary" />
                       <div>
-                        <div className="text-sm font-medium">{language === "en" ? "Why NewGen" : "為什麼選擇我們"}</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">{language === "en" ? "Advantages & income model" : "優勢與收入模式"}</div>
+                        <div className="text-sm font-medium">{language === "en" ? "NewGen Community" : "新睿社群"}</div>
+                        <div className="text-xs text-muted-foreground mt-0.5">{language === "en" ? "Connect with our network" : "加入我們的社群"}</div>
                       </div>
                     </div>
-                  </Link>
+                  </a>
                 </NavigationMenuLink>
               </li>
               <li>
                 <NavigationMenuLink asChild>
-                  <Link
-                    href="/join/training"
+                  <a
+                    href="https://app.topnewgen.com/login"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
                   >
                     <div className="flex items-center gap-2">
-                      <GraduationCap className="h-4 w-4 text-primary" />
+                      <LayoutDashboard className="h-4 w-4 text-primary" />
                       <div>
-                        <div className="text-sm font-medium">{language === "en" ? "Training System" : "培訓體系"}</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">{language === "en" ? "How we develop agents" : "我們如何培育顧問"}</div>
+                        <div className="text-sm font-medium">{language === "en" ? "Agent Dashboard" : "顧問後台"}</div>
+                        <div className="text-xs text-muted-foreground mt-0.5">{language === "en" ? "Manage your account" : "管理您的帳戶"}</div>
                       </div>
                     </div>
-                  </Link>
+                  </a>
                 </NavigationMenuLink>
               </li>
             </ul>

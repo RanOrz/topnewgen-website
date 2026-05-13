@@ -32,7 +32,8 @@ export function Header() {
           <MainNavigation />
 
           {/* Right side */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3">
+
 
             <button
               onClick={() => setLanguage(language === "en" ? "zh" : "en")}
@@ -41,7 +42,7 @@ export function Header() {
               <Globe className="w-4 h-4" />
               <span className="text-sm font-medium">{language === "en" ? "中文" : "English"}</span>
             </button>
-            <Link href="/contact" className="hidden md:inline-flex">
+            <Link href="/#contact" className="hidden md:inline-flex">
               <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-6 rounded-full">
                 {language === "en" ? "Contact Us" : "聯絡我們"}
               </Button>
@@ -62,29 +63,11 @@ export function Header() {
 
                   {/* Bottom actions */}
                   <div className="border-t border-border pt-6 pb-4 space-y-3">
-                    <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
+                    <Link href="/#contact" onClick={() => setMobileMenuOpen(false)}>
                       <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full text-base py-5">
                         {language === "en" ? "Schedule Consultation" : "預約諮詢"}
                       </Button>
                     </Link>
-                    <div className="flex gap-3">
-                      <a
-                        href="https://member.topnewgen.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 text-center text-sm font-medium px-3 py-2.5 rounded-full border border-border text-muted-foreground hover:text-primary hover:border-primary transition-colors"
-                      >
-                        {t.header.community}
-                      </a>
-                      <a
-                        href="https://app.topnewgen.com/login"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 text-center text-sm font-medium px-3 py-2.5 rounded-full border border-border text-muted-foreground hover:text-primary hover:border-primary transition-colors"
-                      >
-                        {t.header.agentDashboard}
-                      </a>
-                    </div>
                     <button
                       onClick={() => setLanguage(language === "en" ? "zh" : "en")}
                       className="w-full flex items-center justify-center gap-2 text-muted-foreground hover:text-primary transition-colors py-2"

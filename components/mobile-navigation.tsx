@@ -14,11 +14,8 @@ export function MobileNavigation() {
     <div className="flex flex-col gap-1 py-2">
 
       <Link
-        href="/company/about"
-        className={cn(
-          "text-base font-medium transition-colors px-2 py-3 rounded-xl",
-          pathname === "/company/about" ? "text-primary bg-accent/10" : "text-foreground hover:text-primary"
-        )}
+        href="/"
+        className="text-base font-medium transition-colors px-2 py-3 rounded-xl text-foreground hover:text-primary"
       >
         {language === "en" ? "About Newgen" : "關於我們"}
       </Link>
@@ -53,30 +50,29 @@ export function MobileNavigation() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="training" className="border-none">
+
+        <AccordionItem value="join" className="border-none">
           <AccordionTrigger className="text-base font-medium px-2 py-3 hover:no-underline">
             {language === "en" ? "Join Us" : "加入我們"}
           </AccordionTrigger>
           <AccordionContent>
             <div className="flex flex-col gap-1 pl-4 pb-2">
-              <Link
-                href="/join/why-newgen"
-                className={cn(
-                  "text-sm font-medium transition-colors px-2 py-2.5 rounded-lg",
-                  pathname === "/join/why-newgen" ? "text-primary bg-accent/10" : "text-muted-foreground hover:text-primary"
-                )}
+              <a
+                href="https://member.topnewgen.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium transition-colors px-2 py-2.5 rounded-lg text-muted-foreground hover:text-primary"
               >
-                {language === "en" ? "Why NewGen" : "為什麼選擇我們"}
-              </Link>
-              <Link
-                href="/join/training"
-                className={cn(
-                  "text-sm font-medium transition-colors px-2 py-2.5 rounded-lg",
-                  pathname === "/join/training" ? "text-primary bg-accent/10" : "text-muted-foreground hover:text-primary"
-                )}
+                {language === "en" ? "NewGen Community" : "新睿社群"}
+              </a>
+              <a
+                href="https://app.topnewgen.com/login"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium transition-colors px-2 py-2.5 rounded-lg text-muted-foreground hover:text-primary"
               >
-                {language === "en" ? "Training System" : "培訓體系"}
-              </Link>
+                {language === "en" ? "Agent Dashboard" : "顧問後台"}
+              </a>
             </div>
           </AccordionContent>
         </AccordionItem>

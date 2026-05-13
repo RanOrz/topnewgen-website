@@ -3,7 +3,8 @@ import { HeroSection } from "@/components/hero-section"
 import { SolutionsSection } from "@/components/solutions-section"
 import { TrustSection } from "@/components/trust-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
-import { CtaSection } from "@/components/cta-section"
+import { AboutSection } from "@/components/about-section"
+import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 
 export default function HomePage() {
@@ -14,7 +15,8 @@ export default function HomePage() {
       <SolutionsSection />
       <TrustSection />
       <TestimonialsSection />
-      <CtaSection />
+      <AboutSection />
+      <ContactSection />
       <Footer />
     </main>
   )

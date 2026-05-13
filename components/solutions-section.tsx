@@ -1,62 +1,106 @@
 "use client"
 
-import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Shield, Percent } from "lucide-react"
+import { Shield, Percent, TrendingUp, GraduationCap, HeartPulse, ScrollText, CheckCircle } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import Link from "next/link"
 
-const solutionMeta = [
-  { icon: Shield, href: "/solutions/life-insurance", key: "lifeInsurance" as const },
-  { icon: Percent, href: "/solutions/guaranteed-income", key: "annuity" as const },
-]
-
 export function SolutionsSection() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
 
-  const solutions = solutionMeta.map(({ icon, href, key }) => ({
-    icon,
-    href,
-    title: t.solutions[key] as string,
-    description: t.solutions[`${key}Desc` as keyof typeof t.solutions] as string,
-  }))
+  const featured = [
+    {
+      icon: Shield,
+      href: "/solutions/life-insurance",
+      title: t.solutions.lifeInsurance,
+      description: t.solutions.lifeInsuranceDesc,
+      bullets: [
+        t.solutions.lifeInsuranceBenefit1,
+        t.solutions.lifeInsuranceBenefit2,
+        t.solutions.lifeInsuranceBenefit3,
+      ],
+    },
+    {
+      icon: Percent,
+      href: "/solutions/guaranteed-income",
+      title: t.solutions.annuity,
+      description: t.solutions.annuityDesc,
+      bullets: [
+        language === "en" ? "Guaranteed income you cannot outlive" : "終身保證收入，不怕活太久",
+        language === "en" ? "Protection from market volatility" : "資產不受市場波動影響",
+        language === "en" ? "Tax-deferred growth potential" : "稅務遞延增值空間",
+      ],
+    },
+  ]
+
+  const secondary = [
+    { icon: TrendingUp, title: t.solutions.taxFreeRetirement, description: t.solutions.taxFreeRetirementDesc },
+    { icon: GraduationCap, title: t.solutions.collegeFunding, description: t.solutions.collegeFundingDesc },
+    { icon: HeartPulse, title: t.solutions.longTermCare, description: t.solutions.longTermCareDesc },
+    { icon: ScrollText, title: t.solutions.estatePlanning, description: t.solutions.estatePlanningDesc },
+  ]
 
   return (
     <section className="py-20 bg-secondary">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-6 text-primary bg-primary">
-            <Shield className="w-10 h-10 text-success-foreground" strokeWidth={2.5} />
-          </div>
+        <div className="text-center mb-14">
           <h2 className="text-4xl font-bold text-primary mb-4">{t.solutions.pageTitle}</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">{t.solutions.pageDescription}</p>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t.solutions.pageDescription}</p>
         </div>
 
-        {/* Solutions Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
-          {solutions.map((solution) => {
-            const Icon = solution.icon
+        {/* Featured cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          {featured.map((s) => {
+            const Icon = s.icon
             return (
-              <Card key={solution.href} className="p-10 bg-card hover:shadow-xl transition-all duration-300 h-full border-0 shadow-md">
-                <div className="flex flex-col items-center text-center h-full justify-between gap-4">
-                  <div className="flex flex-col items-center text-center gap-4">
-                    <div className="w-16 h-16 rounded-2xl bg-accent flex items-center justify-center">
-                      <Icon className="w-8 h-8 text-accent-foreground" strokeWidth={2} />
+              <div key={s.href} className="bg-card rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between gap-6">
+                <div>
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-14 h-14 rounded-2xl bg-accent flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-7 h-7 text-accent-foreground" strokeWidth={2} />
                     </div>
-                    <h3 className="text-xl font-bold text-primary">{solution.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{solution.description}</p>
+                    <div>
+                      <h3 className="text-xl font-bold text-primary">{s.title}</h3>
+                      <p className="text-sm text-muted-foreground mt-0.5">{s.description}</p>
+                    </div>
                   </div>
-                  <Link href={solution.href} className="w-full mt-2">
-                    <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
-                      {t.solutions.learnMore}
-                    </Button>
-                  </Link>
+                  <ul className="space-y-2.5 mt-4">
+                    {s.bullets.map((b, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                        <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </Card>
+                <Link href={s.href}>
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
+                    {t.solutions.learnMore}
+                  </Button>
+                </Link>
+              </div>
             )
           })}
         </div>
+
+        {/* Secondary tiles */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {secondary.map((s) => {
+            const Icon = s.icon
+            return (
+              <div key={s.title} className="bg-card rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-border">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                  <Icon className="w-5 h-5 text-primary" />
+                </div>
+                <h4 className="font-bold text-primary text-sm mb-1.5">{s.title}</h4>
+                <p className="text-xs text-muted-foreground leading-relaxed">{s.description}</p>
+              </div>
+            )
+          })}
+        </div>
+
       </div>
     </section>
   )

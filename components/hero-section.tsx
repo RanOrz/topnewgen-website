@@ -1,8 +1,6 @@
 "use client"
 
 import { useLanguage } from "@/contexts/language-context"
-import Link from "next/link"
-import { ArrowRight, Shield, Briefcase } from "lucide-react"
 import { useState, useEffect } from "react"
 
 const BG_IMAGES = [
@@ -84,65 +82,20 @@ export function HeroSection() {
       <div className="container mx-auto px-4 lg:px-8 relative z-10 pt-20">
         <div className="max-w-4xl">
 
+          <p className="text-accent font-semibold text-sm uppercase tracking-widest mb-5">
+            {language === "en" ? "NewGen Insurance Agency · Bay Area, CA" : "新睿保險集團 · 灣區，加州"}
+          </p>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight">
-            {language === "en" ? "Welcome to Newgen" : "歡迎來到新睿"}
-          </h1>
-          <p className="text-xl md:text-2xl text-white/85 mb-16 leading-relaxed max-w-2xl">
             {language === "en"
-              ? "Whether you're protecting your family or building your career — you're in the right place."
-              : "無論您是想保護家人，還是建立事業，您都來對了地方。"}
+              ? <>Protecting Families.<br />Building Futures.</>
+              : <>守護家庭。<br />成就未來。</>}
+          </h1>
+          <p className="text-lg md:text-xl text-white/70 mb-16 leading-relaxed max-w-xl font-light tracking-wide">
+            {language === "en"
+              ? "Independent advisors. Top-rated carriers. Personalized coverage for every stage of life."
+              : "獨立保險顧問，頂級保險公司，為人生每個階段量身定制保障。"}
           </p>
 
-          {/* Two cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl">
-
-            {/* Card 1: Consumer */}
-            <Link href="/solutions/life-insurance" className="group">
-              <div className="bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/40 hover:border-white/60 rounded-2xl p-8 transition-all duration-300 cursor-pointer">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center flex-shrink-0">
-                    <Shield className="w-5 h-5 text-accent" />
-                  </div>
-                  <h2 className="text-xl font-bold text-white">
-                    {language === "en" ? "Protect My Family" : "保護我的家人"}
-                  </h2>
-                </div>
-                <p className="text-white/90 text-sm leading-relaxed mb-6">
-                  {language === "en"
-                    ? "Explore insurance solutions designed for your family's financial future."
-                    : "探索為您家人財務未來設計的保險方案。"}
-                </p>
-                <span className="inline-flex items-center text-accent font-semibold text-sm gap-2 group-hover:gap-3 transition-all duration-200">
-                  {language === "en" ? "View Solutions" : "查看方案"}
-                  <ArrowRight className="w-4 h-4" />
-                </span>
-              </div>
-            </Link>
-
-            {/* Card 2: Agent */}
-            <Link href="/join/why-newgen" className="group">
-              <div className="bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/40 hover:border-white/60 rounded-2xl p-8 transition-all duration-300 cursor-pointer">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center flex-shrink-0">
-                    <Briefcase className="w-5 h-5 text-accent" />
-                  </div>
-                  <h2 className="text-xl font-bold text-white">
-                    {language === "en" ? "Join Our Team" : "加入我們的團隊"}
-                  </h2>
-                </div>
-                <p className="text-white/90 text-sm leading-relaxed mb-6">
-                  {language === "en"
-                    ? "Build your insurance business with training, tools, and real support."
-                    : "通過培訓、工具和真實支持建立您的保險事業。"}
-                </p>
-                <span className="inline-flex items-center text-accent font-semibold text-sm gap-2 group-hover:gap-3 transition-all duration-200">
-                  {language === "en" ? "Learn More" : "了解更多"}
-                  <ArrowRight className="w-4 h-4" />
-                </span>
-              </div>
-            </Link>
-
-          </div>
         </div>
       </div>
     </section>
